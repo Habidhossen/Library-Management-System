@@ -1,0 +1,98 @@
+/* Website Body design starts here... */
+body{
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+/* Website Body design ends here... */
+
+
+
+
+/* All Custom design starts here... */
+.container{
+    border-radius: 10px;
+}
+.shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/* All Custom design ends here... */
+
+
+
+
+/* Header & Cover images design starts here... */
+.header-design{
+    padding: 20px;
+}
+.site-hero, .site-hero .row {
+    height: 100%;
+    min-height: 700px;
+}
+.site-hero {
+    background-color: #ccc;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+.site-hero:before {
+    /* content: ""; */
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+.carousel-item{
+    height: 100%;
+    min-height: 500px;
+}
+/* Header & Cover images design ends here... */
+
+
+
+
+/* About pages all design starts here... */
+.about-team-div{
+    background-color: rgb(235, 240, 245);
+}
+.about-project-div{
+    background-color: rgb(235, 240, 245);
+}
+.team-card{
+    border-radius: 20px;
+}
+.card-shadow{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+/* About pages all design ends here... */
+
+
+
+
+
+/* green color #08da4e */
+
+
+
+
+.card-button {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+    background-color: #1F487E;
+    color: #fff;
+    
+}
+
+.card-button:hover {
+    text-decoration: none;
+    background-color: #1D3461;
+    color: #fff;
+
+}
