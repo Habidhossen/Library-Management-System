@@ -11,8 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <!-- add bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- add css file -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -20,8 +19,7 @@
 <body>
 
   <!-- ======= Header starts here ======= -->
-  <header
-    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 border-bottom header-design">
+  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 border-bottom header-design">
     <a href="index.php" class="d-flex align-items-center mb-3 mb-lg-0 text-dark text-decoration-none">
       <img class="bi me-2" width="40" height="32" src="images/logo.svg">
       <use xlink:href="#bootstrap"></use></img>
@@ -29,7 +27,7 @@
     </a>
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
       <li><a href="index.php" class="nav-link px-2 link-danger">Home</a></li>
-      <li><a href="admin_login.php" class="nav-link px-2 link-dark">Admin login</a></li>
+      <li><a href="admin/index.php" class="nav-link px-2 link-dark">Admin login</a></li>
       <li><a href="about.php" class="nav-link px-2 link-dark">About</a></li>
     </ul>
     <div class="col-md-3 text-end">
@@ -43,8 +41,7 @@
 
 
   <!-- ======= Body-Cover starts here ======= -->
-  <section class="site-hero" style="background-image:url(images/cover_01.jpg)" id="section-home"
-    data-stellar-background-ratio="0.5">
+  <section class="site-hero" style="background-image:url(images/cover_01.jpg)" id="section-home" data-stellar-background-ratio="0.5">
     <div class="container">
       <div class="row intro-text align-items-center justify-content-center">
         <div class="col-md-10 text-center pt-5">
@@ -74,23 +71,25 @@
         </p>
         <a href="signup.php" class="btn btn-primary btn-md shadow">Registration</a>
       </div>
-
       <div class="col-md-10 mx-auto col-lg-5">
         <form class="p-4 p-md-5 border rounded-3 bg-light text-center shadow">
           <img class="mb-4" src="images/logo.svg" alt="" width="72" height="57">
           <h1 class="h5 mb-3 fw-bold">User login!</h1>
           <hr class="my-4">
+
+          <!-- user login option -->
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+            <input name="email" type="email" class="form-control" placeholder="name@example.com" required>
+            <label for="email">Email address</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
+            <input name="password" type="password" class="form-control" placeholder="Password" required>
+            <label for="password">Password</label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
-          <!-- <hr class="my-4"> -->
-          <!-- <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small> -->
+          <button name="login" class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+
+          <!-- <br><br><span class="alert-danger small" >Wrong Password!</span> -->
+
         </form>
       </div>
     </div>
@@ -110,15 +109,9 @@
 
 
   <!-- ======= Bootstrap, JavaScript CDN add ======= -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-    integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
-    integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 </body>
 
 </html>

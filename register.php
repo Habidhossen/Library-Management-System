@@ -16,5 +16,5 @@ $query_run = mysqli_query($connection, $query);
 
 <script type="text/javascript">
     alert("Registration successfully, You may login now!")
-    window.location.href = "sign_up.php";
+    window.location.href = "index.php";
 </script>
