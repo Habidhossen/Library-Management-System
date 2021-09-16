@@ -6,8 +6,6 @@ body{
 /* Website Body design ends here... */
 
 
-
-
 /* All Custom design starts here... */
 .container{
     border-radius: 10px;
@@ -16,8 +14,6 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 /* All Custom design ends here... */
-
-
 
 
 /* Header & Cover images design starts here... */
@@ -53,8 +49,6 @@ body{
 /* Header & Cover images design ends here... */
 
 
-
-
 /* About pages all design starts here... */
 .about-team-div{
     background-color: rgb(235, 240, 245);
@@ -71,28 +65,22 @@ body{
 /* About pages all design ends here... */
 
 
-
-
-
-/* green color #08da4e */
-
-
-
-
-.card-button {
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
-    width: 100%;
-    background-color: #1F487E;
-    color: #fff;
-    
+/* User & Admin Dashboard card design starts here... */
+.user-dashboard-body{
+    /* background: #F5EEF8; */
+    background: whitesmoke;
 }
-
-.card-button:hover {
-    text-decoration: none;
-    background-color: #1D3461;
-    color: #fff;
-
+.admin-dashboard-body{
+    background: whitesmoke;
 }
+.custom-user-card{
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    border-radius: 10px;
+    background: #F5EEF8;
+}
+.custom-admin-card{
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    border-radius: 10px;
+    background: whitesmoke;
+}
+/* User & Admin Dashboard card design ends here... */

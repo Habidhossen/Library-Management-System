@@ -14,16 +14,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <!-- add css file -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
-<body>
+<body class="admin-dashboard-body">
 
     <!-- ======= Header starts here ======= -->
     <header
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 border-bottom header-design">
-        <a href="#" class="d-flex align-items-center mb-3 mb-lg-0 text-dark text-decoration-none">
-            <img class="bi me-2" width="40" height="32" src="images/logo.svg">
+        <a href="admin_dashboard.php" class="d-flex align-items-center mb-3 mb-lg-0 text-dark text-decoration-none">
+            <img class="bi me-2" width="40" height="32" src="../images/logo.svg">
             <use xlink:href="#bootstrap"></use></img>
             <span class="navbar-brand mb-0 h1 text-success"><b>Library Management System</b></span>
         </a>
@@ -39,9 +39,9 @@
                 data-bs-toggle="dropdown" aria-expanded="false">
                 My Profile</button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item small" href="#">View Profile</a></li>
-                <li><a class="dropdown-item small" href="#">Edit Profile</a></li>
-                <li><a class="dropdown-item small" href="#">Change Password</a></li>
+                <li><a class="dropdown-item small" href="view_profile.php">View Profile</a></li>
+                <li><a class="dropdown-item small" href="edit_profile.php">Edit Profile</a></li>
+                <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
 
             <a href="" class="btn btn-success btn-sm">Log out</a>
@@ -179,42 +179,42 @@
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-primary"><strong>52</strong></h4>
                     <p class="card-text">Total Users</p>
-                    <a href="#" class="btn btn-primary d-flex justify-content-center">View</a>
+                    <a href="#" class="btn btn-outline-primary d-flex justify-content-center">View</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-success"><strong>299</strong></h4>
                     <p class="card-text">Total Books</p>
-                    <a href="#" class="btn btn-success d-flex justify-content-center">View</a>
+                    <a href="#" class="btn btn-outline-success d-flex justify-content-center">View</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-danger"><strong>42</strong></h4>
-                    <p class="card-text">Issued Book</p>
-                    <a href="#" class="btn btn-danger d-flex justify-content-center">View</a>
+                    <p class="card-text"> Total Issued Book</p>
+                    <a href="#" class="btn btn-outline-danger d-flex justify-content-center">View</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-danger"><strong>22</strong></h4>
                     <p class="card-text">Total Authors</p>
-                    <a href="#" class="btn btn-danger d-flex justify-content-center">View</a>
+                    <a href="#" class="btn btn-outline-danger d-flex justify-content-center">View</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-primary"><strong>17</strong></h4>
                     <p class="card-text">Total Category</p>
-                    <a href="#" class="btn btn-primary d-flex justify-content-center">View</a>
+                    <a href="#" class="btn btn-outline-primary d-flex justify-content-center">View</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-success"><strong>8</strong></h4>
                     <p class="card-text">Book Request</p>
-                    <a href="#" class="btn btn-success d-flex justify-content-center">View</a>
+                    <a href="#" class="btn btn-outline-success d-flex justify-content-center">View</a>
                 </div>
             </div>
         </div>

@@ -14,37 +14,37 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <!-- add css file -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="user-dashboard-body">
+<body class="admin-dashboard-body">
 
     <!-- ======= Header starts here ======= -->
     <header
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 border-bottom header-design">
-        <a href="user_dashboard.php" class="d-flex align-items-center mb-3 mb-lg-0 text-dark text-decoration-none">
-            <img class="bi me-2" width="40" height="32" src="images/logo.svg">
+        <a href="admin_dashboard.php" class="d-flex align-items-center mb-3 mb-lg-0 text-dark text-decoration-none">
+            <img class="bi me-2" width="40" height="32" src="../images/logo.svg">
             <use xlink:href="#bootstrap"></use></img>
-            <span class="navbar-brand mb-0 h1 text-primary"><b>Library Management System</b></span>
+            <span class="navbar-brand mb-0 h1 text-success"><b>Library Management System</b></span>
         </a>
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 
-            <li><a href="#" class="nav-link px-2 link-primary"><strong>Welcome, User</strong></a></li>
-            <li><a href="#" class="nav-link px-2 link-primary"><strong>Email: xyz@gmail.com</strong></a></li>
+            <li><a href="#" class="nav-link px-2 link-success"><strong>Welcome Admin!</strong></a></li>
+            <li><a href="#" class="nav-link px-2 link-success"><strong>Today is Sunday, 12-09-2021</strong></a></li>
 
         </ul>
         <div class="col-md-3 text-end">
 
-            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1"
+            <button class="btn btn-outline-success btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 My Profile</button>
-            <ul class="dropdown-menu dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item small" href="view_profile.php">View Profile</a></li>
                 <li><a class="dropdown-item small" href="edit_profile.php">Edit Profile</a></li>
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
 
-            <a href="logout.php" class="btn btn-primary btn-sm">Log out</a>
+            <a href="" class="btn btn-success btn-sm">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->
@@ -52,35 +52,35 @@
 
 
 
-    <!-- ======= Change-Password starts here======= -->
+    <!-- ======= Admin-Edit-Profile starts here======= -->
     <div class="row m-5">
         <div class="col-lg-3 col-md-3 col-sm-2"></div>
         <div class="col-lg-6 col-md-6 col-sm-8">
-            <h6 class="mb-3 fw-bold">Change Password</h6>
+            <h6 class="mb-3 fw-bold">Edit Profile</h6>
             <hr class="my-3">
             <form>
                 <div class="form-group row align-items-center">
-                    <label class="col-4">Current Password:</label>
+                    <label class="col-4">Name:</label>
                     <div class="col-8">
-                      <input name="current_password" type="password" class="form-control alert-primary" value="1234">
+                        <input name="name" class="form-control alert-success" value="Admin">
                     </div>
                 </div>
 
                 <div class="form-group row align-items-center mt-2">
-                    <label class="col-4">New Password:</label>
+                    <label class="col-4">Email:</label>
                     <div class="col-8">
-                      <input name="new_password" type="password" class="form-control alert-primary" value="123456">
+                        <input name="name" class="form-control alert-success" value="admin@gmail.com">
                     </div>
                 </div>
                 <div class="mt-3">
-                    <button type="submit" class="w-100 btn btn-primary btn-sm">Change Password</button>
+                    <button type="submit" class="w-100 btn btn-success btn-sm">Update Profile</button>
                 </div>
             </form>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-2">
         </div>
     </div>
-    <!-- ======= Change-Password ends here======= -->
+    <!-- ======= Admin-Edit-Profile ends here======= -->
 
 
 
