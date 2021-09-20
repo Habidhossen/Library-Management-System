@@ -13,21 +13,23 @@
   <!-- add bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- add css file -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- add favicon file -->
+  <link rel="shortcut icon" href="images/logo.svg" type="image/x-icon">
 </head>
 
 <body>
 
   <!-- ======= Header starts here ======= -->
   <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 border-bottom header-design">
-    <a href="index.html" class="d-flex align-items-center mb-3 mb-lg-0 text-dark text-decoration-none">
+    <a href="index.php" class="d-flex align-items-center mb-3 mb-lg-0 text-dark text-decoration-none">
       <img class="bi me-2" width="40" height="32" src="images/logo.svg">
       <use xlink:href="#bootstrap"></use></img>
       <span class="navbar-brand mb-0 h1 text-primary"><b>Library Management System</b></span>
     </a>
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
       <li><a href="index.php" class="nav-link px-2 link-dark">Home</a></li>
-      <li><a href="admin_login.php" class="nav-link px-2 link-dark">Admin login</a></li>
+      <li><a href="admin/index.php" class="nav-link px-2 link-dark">Admin login</a></li>
       <li><a href="about.php" class="nav-link px-2 link-dark">About</a></li>
     </ul>
     <div class="col-md-3 text-end">

@@ -13,7 +13,9 @@
     <!-- add bootstrap style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <!-- add css file -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- add favicon file -->
+    <link rel="shortcut icon" href="images/logo.svg" type="image/x-icon">
 </head>
 
 <body class="user-dashboard-body">
@@ -54,16 +56,16 @@
         <div class="row row-cols-1 row-cols-md-3 mt-2 g-4 justify-content-center">
             <div class="col">
                 <div class="card-body custom-user-card p-4">
-                    <h4 class="card-title text-primary"><strong>52</strong></h4>
+                    <h4 class="card-title text-primary"><strong>00</strong></h4>
                     <p class="card-text">Issued Book</p>
-                    <a href="#" class="btn btn-primary d-flex justify-content-center">View</a>
+                    <a href="#" class="btn btn-primary d-flex justify-content-center">Open</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-user-card p-4">
-                    <h4 class="card-title text-success"><strong>299</strong></h4>
-                    <p class="card-text">Not Returned Book</p>
-                    <a href="#" class="btn btn-success d-flex justify-content-center">View</a>
+                    <h4 class="card-title text-success"><strong>00</strong></h4>
+                    <p class="card-text">Send Book Request</p>
+                    <a href="#" class="btn btn-success d-flex justify-content-center">Open</a>
                 </div>
             </div>
         </div>

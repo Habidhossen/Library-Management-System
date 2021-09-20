@@ -14,7 +14,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <!-- add css file -->
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- add favicon file -->
+    <link rel="shortcut icon" href="../images/logo.svg" type="image/x-icon">
 </head>
 
 <body class="admin-dashboard-body">
@@ -30,7 +32,7 @@
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 
             <li><a href="#" class="nav-link px-2 link-success"><strong>Welcome Admin!</strong></a></li>
-            <li><a href="#" class="nav-link px-2 link-success"><strong>Today is Sunday, 12-09-2021</strong></a></li>
+            <li><a class="nav-link px-2 link-success"><strong><?php /*set default timezone as Asia/Dhaka -->*/date_default_timezone_set("Asia/Dhaka"); /*now print current day & date -->*/echo "Today is " . date("l, F j, Y");?></strong></a></li>
 
         </ul>
         <div class="col-md-3 text-end">
