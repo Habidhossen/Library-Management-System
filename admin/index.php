@@ -31,12 +31,13 @@
     </a>
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
       <li><a href="../index.php" class="nav-link px-2 link-dark">Home</a></li>
-      <li><a href="#admin-login" class="nav-link px-2 link-danger">Admin login</a></li>
+      <li><a href="#admin-login" class="nav-link px-2 link-secondary">Admin login</a></li>
+      <li><a href="contact.php" class="nav-link px-2 link-dark">Contact us</a></li>
       <li><a href="../about.php" class="nav-link px-2 link-dark">About</a></li>
     </ul>
     <div class="col-md-3 text-end">
-      <a href="../signup.php" class="btn btn-outline-primary btn-sm disabled">Register</a>
-      <a href="../index.php" class="btn btn-primary btn-sm disabled">Log in</a>
+      <a href="../index.php" class="btn btn-outline-primary btn-sm">Member login</a>
+      <a href="../signup.php" class="btn btn-primary btn-sm">Sign up</a>
     </div>
   </header>
   <!-- ======= Header ends here======= -->

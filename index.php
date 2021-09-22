@@ -28,13 +28,14 @@
       <span class="navbar-brand mb-0 h1 text-primary"><b>Library Management System</b></span>
     </a>
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a href="index.php" class="nav-link px-2 link-danger">Home</a></li>
+      <li><a href="index.php" class="nav-link px-2 link-secondary">Home</a></li>
       <li><a href="admin/index.php" class="nav-link px-2 link-dark">Admin login</a></li>
+      <li><a href="contact.php" class="nav-link px-2 link-dark">Contact us</a></li>
       <li><a href="about.php" class="nav-link px-2 link-dark">About</a></li>
     </ul>
     <div class="col-md-3 text-end">
-      <a href="signup.php" class="btn btn-outline-primary btn-sm">Register</a>
-      <a href="#user-login" class="btn btn-primary btn-sm">Log in</a>
+      <a href="#user-login" class="btn btn-outline-primary btn-sm">Member login</a>
+      <a href="signup.php" class="btn btn-primary btn-sm">Sign up</a>
     </div>
   </header>
   <!-- ======= Header ends here======= -->

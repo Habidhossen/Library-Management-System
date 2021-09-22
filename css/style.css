@@ -22,7 +22,7 @@ body{
 }
 .site-hero, .site-hero .row {
     height: 100%;
-    min-height: 700px;
+    min-height: 600px;
 }
 .site-hero {
     background-color: #ccc;
@@ -42,10 +42,10 @@ body{
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
 }
-.carousel-item{
+/* .carousel-item{
     height: 100%;
-    min-height: 500px;
-}
+    min-height: 700px;
+} */
 /* Header & Cover images design ends here... */
 
 
@@ -84,3 +84,4 @@ body{
     background: whitesmoke;
 }
 /* User & Admin Dashboard card design ends here... */
+

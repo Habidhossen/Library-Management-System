@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
+    <title>Admin Dashboard</title>
     <!-- add custom font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +37,7 @@
         </ul>
         <div class="col-md-3 text-end">
 
-            <button class="btn btn-outline-success btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1"
+            <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 My Profile</button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
@@ -46,7 +46,7 @@
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
 
-            <a href="" class="btn btn-success btn-sm">Log out</a>
+            <a href="" class="btn btn-outline-danger btn-sm">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->
