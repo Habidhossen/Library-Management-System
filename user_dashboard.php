@@ -29,8 +29,8 @@
         </a>
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 
-            <li><a href="#" class="nav-link px-2 link-primary"><strong>Welcome User</strong></a></li>
-            <li><a href="#" class="nav-link px-2 link-primary"><strong>Email: user@gmail.com</strong></a></li>
+            <li><a class="nav-link px-2 link-primary"><strong><?php /*set default timezone as Asia/Dhaka -->*/ date_default_timezone_set("Asia/Dhaka"); /*now print current day & date -->*/
+                                                                echo "Today is " . date("l, F j, Y"); ?></strong></a></li>
 
         </ul>
         <div class="col-md-3 text-end">
@@ -48,7 +48,28 @@
     </header>
     <!-- ======= Header ends here======= -->
 
-    
+
+
+
+    <!-- ======= Body Header starts here ======= -->
+    <header class="d-flex align-items-center justify-content-center border-bottom header-design" style="background-color: darkslateblue;">
+
+        <div class="col-lg-7 col-md-8 col-sm-12 justify-content-center m-4">
+
+            <h3 class="m-3 text-center text-white"><strong>Welcome! Mr. User</strong></h3>
+            <p class="mb-4 text-center text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores
+                voluptates aliquid possimus, optio tenetur molestiae</p>
+
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search book" required>
+                <button type="submit" name="button" class="btn btn-outline-light mx-1">Search</button>
+            </div>
+        </div>
+
+    </header>
+    <!-- ======= Body Header ends here ======= -->
+
+
 
 
     <!-- ======= User-Dashboard starts here======= -->
@@ -56,14 +77,14 @@
         <div class="row row-cols-1 row-cols-md-3 mt-2 g-4 justify-content-center">
             <div class="col">
                 <div class="card-body custom-user-card p-4">
-                    <h4 class="card-title text-primary"><strong>00</strong></h4>
+                    <h4 class="card-title text-primary"><strong>0</strong></h4>
                     <p class="card-text">Issued Book</p>
                     <a href="#" class="btn btn-primary d-flex justify-content-center">Open</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-user-card p-4">
-                    <h4 class="card-title text-success"><strong>00</strong></h4>
+                    <h4 class="card-title text-success"><strong>0</strong></h4>
                     <p class="card-text">Send Book Request</p>
                     <a href="#" class="btn btn-success d-flex justify-content-center">Open</a>
                 </div>

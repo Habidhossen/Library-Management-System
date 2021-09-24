@@ -83,5 +83,12 @@ body{
     border-radius: 10px;
     background: whitesmoke;
 }
+.custom-profile-card {
+    margin-top: 35px;
+    padding: 35px;
+    border-radius: 15px;
+    background: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
 /* User & Admin Dashboard card design ends here... */
 

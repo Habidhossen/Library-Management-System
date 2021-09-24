@@ -31,7 +31,7 @@
         </a>
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 
-            <li><a href="#" class="nav-link px-2 link-success"><strong>Welcome Admin!</strong></a></li>
+            <li><a class="nav-link px-2 link-success"><strong>Welcome Admin!</strong></a></li>
             <li><a class="nav-link px-2 link-success"><strong><?php /*set default timezone as Asia/Dhaka -->*/date_default_timezone_set("Asia/Dhaka"); /*now print current day & date -->*/echo "Today is " . date("l, F j, Y");?></strong></a></li>
 
         </ul>
@@ -39,14 +39,14 @@
 
             <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                My Profile</button>
+                Admin Profile</button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item small" href="view_profile.php">View Profile</a></li>
                 <li><a class="dropdown-item small" href="edit_profile.php">Edit Profile</a></li>
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
 
-            <a href="" class="btn btn-outline-danger btn-sm">Log out</a>
+            <a href="" class="btn btn-danger btn-sm">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->
@@ -55,32 +55,29 @@
 
 
     <!-- ======= Admin-Edit-Profile starts here======= -->
-    <div class="row m-5">
-        <div class="col-lg-3 col-md-3 col-sm-2"></div>
-        <div class="col-lg-6 col-md-6 col-sm-8">
-            <h6 class="mb-3 fw-bold">Edit Profile</h6>
-            <hr class="my-3">
-            <form>
-                <div class="form-group row align-items-center">
-                    <label class="col-4">Name:</label>
-                    <div class="col-8">
-                        <input name="name" class="form-control alert-success" value="Admin">
-                    </div>
-                </div>
+    <div class="container col-lg-6 col-md-8 col-sm-8 custom-profile-card">
 
-                <div class="form-group row align-items-center mt-2">
-                    <label class="col-4">Email:</label>
-                    <div class="col-8">
-                        <input name="name" class="form-control alert-success" value="admin@gmail.com">
-                    </div>
+        <h5 class="mb-3 fw-bold">Edit Profile</h5>
+        <hr class="my-3">
+        <form>
+            <div class="form-group row align-items-center">
+                <label class="col-4">Name:</label>
+                <div class="col-8">
+                    <input name="name" class="form-control alert-success" value="Admin">
                 </div>
-                <div class="mt-3">
-                    <button type="submit" class="w-100 btn btn-success btn-sm">Update Profile</button>
+            </div>
+
+            <div class="form-group row align-items-center mt-2">
+                <label class="col-4">Email:</label>
+                <div class="col-8">
+                    <input name="name" class="form-control alert-success" value="admin@gmail.com">
                 </div>
-            </form>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-2">
-        </div>
+            </div>
+            <div class="mt-3">
+                <button type="submit" class="w-100 btn btn-success btn-sm">Update Profile</button>
+            </div>
+        </form>
+
     </div>
     <!-- ======= Admin-Edit-Profile ends here======= -->
 
