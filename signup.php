@@ -110,7 +110,7 @@
             </div>
 
             <div class="form-row py-2">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary shadow">Submit</button>
             </div>
             
           </form>

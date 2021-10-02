@@ -35,7 +35,7 @@
         </ul>
         <div class="col-md-3 text-end">
 
-            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-outline-primary btn-sm shadow dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 My Profile</button>
             <ul class="dropdown-menu dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item small" href="view_profile.php">View Profile</a></li>
@@ -43,7 +43,7 @@
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
 
-            <a href="logout.php" class="btn btn-primary btn-sm">Log out</a>
+            <a href="logout.php" class="btn btn-primary btn-sm shadow">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->
@@ -54,15 +54,15 @@
     <!-- ======= Body Header starts here ======= -->
     <header class="d-flex align-items-center justify-content-center border-bottom header-design" style="background-color: darkslateblue;">
 
-        <div class="col-lg-7 col-md-8 col-sm-12 justify-content-center m-4">
+        <div class="col-lg-7 col-md-8 col-sm-12 justify-content-center m-3">
 
             <h3 class="m-3 text-center text-white"><strong>Welcome! Mr. User</strong></h3>
             <p class="mb-4 text-center text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores
                 voluptates aliquid possimus, optio tenetur molestiae</p>
 
             <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search book" required>
-                <button type="submit" name="button" class="btn btn-outline-light mx-1">Search</button>
+                <input type="text" name="search" class="form-control" placeholder="Type a book name" required>
+                <button type="submit" name="button" class="btn btn-outline-light mx-1">Search Book</button>
             </div>
         </div>
 
@@ -79,14 +79,14 @@
                 <div class="card-body custom-user-card p-4">
                     <h4 class="card-title text-primary"><strong>0</strong></h4>
                     <p class="card-text">Issued Book</p>
-                    <a href="#" class="btn btn-primary d-flex justify-content-center">Open</a>
+                    <a href="#" class="btn btn-primary d-flex justify-content-center">View</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-user-card p-4">
                     <h4 class="card-title text-success"><strong>0</strong></h4>
-                    <p class="card-text">Send Book Request</p>
-                    <a href="#" class="btn btn-success d-flex justify-content-center">Open</a>
+                    <p class="card-text">Book Request</p>
+                    <a href="#" class="btn btn-success d-flex justify-content-center">View</a>
                 </div>
             </div>
         </div>

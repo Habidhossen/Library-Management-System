@@ -35,7 +35,7 @@
         </ul>
         <div class="col-md-3 text-end">
 
-            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-outline-primary btn-sm shadow dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 My Profile</button>
             <ul class="dropdown-menu dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item small" href="view_profile.php">View Profile</a></li>
@@ -43,7 +43,7 @@
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
 
-            <a href="logout.php" class="btn btn-primary btn-sm">Log out</a>
+            <a href="logout.php" class="btn btn-primary btn-sm shadow">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->
