@@ -48,7 +48,7 @@
     <div class="container">
       <div class="row intro-text align-items-center justify-content-center">
         <div class="col-md-10 text-center pt-5">
-          <h1 class="text-white">Welcome To The <strong class="d-block">Library</strong></h1>
+          <h1 class="text-white">Welcome to the <strong class="d-block">Library</strong></h1>
           <p class="d-block text-white mt-3">Libraries are cornerstones of our communities as hubs for knowledge,
             research, history, and so much more. They are places where people can connect with others and invest in
             their own future. We know that libraries are a huge resource to every community.</p>

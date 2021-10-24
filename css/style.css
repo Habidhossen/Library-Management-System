@@ -22,7 +22,7 @@ body{
 }
 .site-hero, .site-hero .row {
     height: 100%;
-    min-height: 600px;
+    min-height: 100vh;
 }
 .site-hero {
     background-color: #ccc;

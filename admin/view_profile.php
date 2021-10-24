@@ -37,7 +37,7 @@
         <div class="col-md-3 text-end">
 
             <button class="btn btn-success btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Profile</button>
+                Admin</button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item small" href="view_profile.php">View Profile</a></li>
                 <li><a class="dropdown-item small" href="edit_profile.php">Edit Profile</a></li>

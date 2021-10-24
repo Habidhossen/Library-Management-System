@@ -56,7 +56,7 @@
 
         <div class="col-lg-7 col-md-8 col-sm-12 justify-content-center m-3">
 
-            <h3 class="m-3 text-center text-white"><strong>Welcome! Mr. User</strong></h3>
+            <h3 class="m-3 text-center text-white"><strong>Welcome! User</strong></h3>
             <p class="mb-4 text-center text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores
                 voluptates aliquid possimus, optio tenetur molestiae</p>
 

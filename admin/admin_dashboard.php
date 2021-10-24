@@ -37,7 +37,7 @@
         <div class="col-md-3 text-end">
 
             <button class="btn btn-success btn-sm shadow dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Profile</button>
+                Admin</button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item small" href="view_profile.php">View Profile</a></li>
                 <li><a class="dropdown-item small" href="edit_profile.php">Edit Profile</a></li>
@@ -149,8 +149,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">ADD BOOK</a>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                    <a href="" class="btn btn-success btn-sm">SAVE</a>
                 </div>
             </div>
         </div>
@@ -178,8 +178,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">ADD AUTHOR</a>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                    <a href="" class="btn btn-success btn-sm">SAVE</a>
                 </div>
             </div>
         </div>
@@ -203,8 +203,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">ADD CATEGORY</a>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                    <a href="" class="btn btn-success btn-sm">SAVE</a>
                 </div>
             </div>
         </div>
@@ -248,8 +248,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">ISSUE BOOK</a>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                    <a href="" class="btn btn-success btn-sm">SAVE</a>
                 </div>
             </div>
         </div>

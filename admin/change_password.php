@@ -39,7 +39,7 @@
 
             <button class="btn btn-success btn-sm shadow dropdown-toggle" type="button" id="dropdownMenuButton1"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                Profile</button>
+                Admin</button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item small" href="view_profile.php">View Profile</a></li>
                 <li><a class="dropdown-item small" href="edit_profile.php">Edit Profile</a></li>
@@ -63,14 +63,14 @@
             <div class="form-group row align-items-center">
                 <label class="col-4">Current Password:</label>
                 <div class="col-8">
-                    <input name="current_password" type="password" class="form-control alert-success" value="1234">
+                    <input name="current_password" type="password" class="form-control alert-success" value="">
                 </div>
             </div>
 
             <div class="form-group row align-items-center mt-2">
                 <label class="col-4">New Password:</label>
                 <div class="col-8">
-                    <input name="new_password" type="password" class="form-control alert-success" value="123456">
+                    <input name="new_password" type="password" class="form-control alert-success" value="">
                 </div>
             </div>
             <div class="mt-3">
