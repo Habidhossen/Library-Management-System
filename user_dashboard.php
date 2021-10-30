@@ -57,8 +57,7 @@
         <div class="col-lg-7 col-md-8 col-sm-12 justify-content-center m-3">
 
             <h3 class="m-3 text-center text-white"><strong>Welcome! User</strong></h3>
-            <p class="mb-4 text-center text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores
-                voluptates aliquid possimus, optio tenetur molestiae</p>
+            <p class="mb-4 text-center text-white">This is your dashboard. Now you can access all the features of our library from here.</p>
 
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Type a book name" required>

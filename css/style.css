@@ -1,46 +1,47 @@
 /* Website Body design starts here... */
-body{
-    background-color: white;
-    font-family: 'Poppins', sans-serif;
+body {
+  background-color: white;
+  font-family: "Poppins", sans-serif;
 }
 /* Website Body design ends here... */
 
 
 /* All Custom design starts here... */
-.container{
-    border-radius: 10px;
+.container {
+  border-radius: 10px;
 }
-.shadow{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 /* All Custom design ends here... */
 
 
 /* Header & Cover images design starts here... */
-.header-design{
-    padding: 20px;
+.header-design {
+  padding: 20px;
 }
-.site-hero, .site-hero .row {
-    height: 100%;
-    min-height: 100vh;
+.site-hero,
+.site-hero .row {
+  height: 100%;
+  min-height: 100vh;
 }
 .site-hero {
-    background-color: #ccc;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    position: relative;
-    overflow: hidden;
+  background-color: #ccc;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
 }
 .site-hero:before {
-    /* content: ""; */
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+  /* content: ""; */
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 /* .carousel-item{
     height: 100%;
@@ -50,7 +51,21 @@ body{
 
 
 /* About pages all design starts here... */
-.about-team-div{
+.team-card {
+  border-radius: 20px;
+  background: #eeeeee;
+  box-shadow: 20px 20px 60px #cacaca, -20px -20px 60px #ffffff;
+  border: none;
+}
+.team-card img {
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d6d6d6, #ffffff);
+  box-shadow: 20px 20px 60px #cacaca, -20px -20px 60px #ffffff;
+}
+/* About pages all design ends here... */
+
+
+/* .about-team-div{
     background-color: rgb(235, 240, 245);
 }
 .about-project-div{
@@ -61,34 +76,36 @@ body{
 }
 .card-shadow{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-}
+} */
 /* About pages all design ends here... */
 
 
 /* User & Admin Dashboard card design starts here... */
-.user-dashboard-body{
-    /* background: #F5EEF8; */
-    background: whitesmoke;
+.user-dashboard-body {
+  /* background: #F5EEF8; */
+  background: whitesmoke;
 }
-.admin-dashboard-body{
-    background: whitesmoke;
+.admin-dashboard-body {
+  background: whitesmoke;
 }
-.custom-user-card{
-    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-    border-radius: 10px;
-    background: #F5EEF8;
+.custom-user-card {
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  border-radius: 10px;
+  background: #f5eef8;
 }
-.custom-admin-card{
-    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-    border-radius: 10px;
-    background: whitesmoke;
+.custom-admin-card {
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  border-radius: 10px;
+  background: whitesmoke;
 }
 .custom-profile-card {
-    margin-top: 100px;
-    padding: 35px;
-    border-radius: 15px;
-    background: whitesmoke;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+  margin-top: 100px;
+  padding: 35px;
+  border-radius: 15px;
+  background: whitesmoke;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 }
 /* User & Admin Dashboard card design ends here... */
 
@@ -96,13 +113,13 @@ body{
 /* Customize bootstrap dropdown starts here */
 .dropdown-item:focus,
 .dropdown-item:hover {
-    color: white;
-    background-color: cadetblue
+  color: white;
+  background-color: cadetblue;
 }
 /* Customize bootstrap dropdown-dark color */
 .dropdown-menu-dark .dropdown-item:focus,
 .dropdown-menu-dark .dropdown-item:hover {
-    color: #fff;
-    background-color: rgba(255, 255, 255, .15)
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 /* Customize bootstrap dropdown ends here */

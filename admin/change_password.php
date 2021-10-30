@@ -53,7 +53,7 @@
 
 
 
-
+    
     <!-- ======= Change-Password starts here======= -->
     <div class="container col-lg-6 col-md-8 col-sm-8 custom-profile-card">
 
@@ -80,7 +80,6 @@
 
     </div>
     <!-- ======= Change-Password ends here======= -->
-
 
 
 
