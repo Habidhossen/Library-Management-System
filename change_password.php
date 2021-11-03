@@ -1,3 +1,47 @@
+<?php
+
+include 'db_connection.php';
+session_start();
+
+$showSuccess = false;
+$showError = false;
+
+
+// update profile
+if (isset($_POST['change_password'])) {
+
+    $password = '';
+    $current_pass = $_POST['current_password'];
+    $new_pass = $_POST['new_password'];
+
+    $sql = "SELECT * FROM `user_tbl` WHERE Email = '$_SESSION[userEmail]'";
+    $result = mysqli_query($connection, $sql);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $password = $row['Password'];
+    }
+
+    if ($password == $current_pass) {
+        $sql = "UPDATE `user_tbl` SET Password ='$new_pass' WHERE Email = '$_SESSION[userEmail]'";
+        $result = mysqli_query($connection, $sql);
+        if ($result) {
+            $showSuccess = 'Password changed succesfully!';
+        } else {
+            $showError = 'Password change failed!';
+        }
+    } else {
+        $showError = "Current password didn't match! Try again";
+    }
+}
+
+
+// when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
+if (!isset($_SESSION['userEmail'])) {
+    header("location: index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,22 +100,38 @@
 
         <h5 class="mb-3 fw-bold">Change Password</h5>
         <hr class="my-3">
-        <form>
+
+        <!-- PHP Coding for showing alert -->
+        <?php
+        if ($showSuccess) {
+            echo '<div class="alert alert-success alert-dismissible fade show small" role="alert">
+                  ' . $showSuccess . '
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> ';
+        }
+        if ($showError) {
+            echo '<div class="alert alert-warning alert-dismissible fade show small" role="alert">
+                  ' . $showError . '
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> ';
+        }
+        ?>
+
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="form-group row align-items-center">
                 <label class="col-4">Current Password:</label>
                 <div class="col-8">
-                    <input name="current_password" type="password" class="form-control alert-primary" value="">
+                    <input name="current_password" type="password" class="form-control alert-primary" required value="">
                 </div>
             </div>
-
             <div class="form-group row align-items-center mt-2">
                 <label class="col-4">New Password:</label>
                 <div class="col-8">
-                    <input name="new_password" type="password" class="form-control alert-primary" value="">
+                    <input name="new_password" type="password" class="form-control alert-primary" required value="">
                 </div>
             </div>
             <div class="mt-3">
-                <button type="submit" class="w-100 btn btn-primary btn-sm">Change Password</button>
+                <button name="change_password" type="submit" class="w-100 btn btn-primary btn-sm">Change Password</button>
             </div>
         </form>
 

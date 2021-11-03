@@ -1,18 +1,18 @@
 <?php
 
 //declare variable
-$serverName = "localhost";
-$userName = "root";
+$server = "localhost";
+$username = "root";
 $password = "";
-$databaseName = "";
+$database = "lms_db";
  
 //create connection with databse
-$connection = mysqli_connect($serverName, $userName, $password, $databaseName);
+$connection = mysqli_connect($server, $username, $password, $database);
 
 //connection check
 if(!$connection) {
     die("Connection failed! Due to" . mysqli_connect_error());
 }
-echo "Connected successfully";
+// echo "Connected successfully";
 
 ?>

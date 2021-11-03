@@ -1,3 +1,49 @@
+<?php
+
+include 'db_connection.php';
+session_start();
+
+$showSuccess = false;
+$showError = false;
+
+// declare variable
+$username = '';
+$usermobile = '';
+$useraddress = '';
+$sql = "SELECT * FROM `user_tbl` WHERE Email = '$_SESSION[userEmail]'";
+$result = mysqli_query($connection, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $username = $row['Name'];
+    $usermobile = $row['Mobile'];
+    $useraddress = $row['Address'];
+}
+
+// update profile
+if (isset($_POST['update_profile'])) {
+
+    $name = $_POST['name'];
+    $mobile = $_POST['mobile'];
+    $address = $_POST['address'];
+
+    $sql = "UPDATE `user_tbl` SET Name ='$name', Mobile ='$mobile', Address ='$address'";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        $showSuccess = 'Successfully updated!';
+        // header("location: edit_profile.php");
+    } else {
+        $showError = 'Update failed!';
+    }
+}
+
+
+// when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
+if (!isset($_SESSION['userId'])) {
+    header("location: index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,36 +102,48 @@
 
         <h5 class="mb-3 fw-bold">Edit Profile</h5>
         <hr class="my-3">
-        <form>
+
+
+        <!-- PHP Coding for showing alert -->
+        <?php
+        if ($showSuccess) {
+            echo '<div class="alert alert-success alert-dismissible fade show small" role="alert">
+                  ' . $showSuccess . '
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> ';
+        }
+        if ($showError) {
+            echo '<div class="alert alert-danger alert-dismissible fade show small" role="alert">
+                  ' . $showError . '
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> ';
+        }
+        ?>
+
+
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="form-group row align-items-center">
                 <label class="col-4">Name:</label>
                 <div class="col-8">
-                    <input name="name" class="form-control alert-primary" value="Habid Hossen">
-                </div>
-            </div>
-
-            <div class="form-group row align-items-center mt-2">
-                <label class="col-4">Email:</label>
-                <div class="col-8">
-                    <input name="name" class="form-control alert-primary" value="habidhossen@gmail.com">
+                    <input name="name" class="form-control alert-primary" value="<?php echo $username; ?>">
                 </div>
             </div>
 
             <div class="form-group row align-items-center mt-2">
                 <label class="col-4">Mobile No:</label>
                 <div class="col-8">
-                    <input name="name" class="form-control alert-primary" value="01854092871">
+                    <input name="mobile" class="form-control alert-primary" value="<?php echo $usermobile; ?>">
                 </div>
             </div>
 
             <div class="form-group row align-items-center mt-2">
                 <label class="col-4">Address:</label>
                 <div class="col-8">
-                    <input name="name" class="form-control alert-primary" value="Chattogram, Bangladesh">
+                    <input name="address" class="form-control alert-primary" value="<?php echo $useraddress; ?>">
                 </div>
             </div>
             <div class="mt-3">
-                <button type="submit" class="w-100 btn btn-primary btn-sm">Update Profile</button>
+                <button name="update_profile" type="submit" class="w-100 btn btn-primary btn-sm">Update Profile</button>
             </div>
         </form>
 

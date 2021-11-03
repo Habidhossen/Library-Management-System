@@ -81,38 +81,32 @@
         <div class="col-md-8 py-5 border">
           <h5 class="pb-4 fw-bold">Please fill with your details</h5>
 
-          <form action="register.php" method="post">
-
+          <form action="registration.php" method="POST">
             <div class="row py-2">
               <div class="form-group col-md-6">
                 <input name="name" placeholder="Full Name" class="form-control" type="text" required="required">
               </div>
-
               <div class="form-group col-md-6">
                 <input name="email" placeholder="Email" class="form-control" type="email" required="required">
               </div>
             </div>
-
             <div class="row py-2">
               <div class="form-group col-md-6">
                 <input name="password" placeholder="Password" class="form-control" type="password" required="required">
               </div>
-
               <div class="form-group col-md-6">
                 <input name="mobile" placeholder="Mobile No." class="form-control" type="text" required="required">
               </div>
             </div>
-
             <div class="row py-2">
               <div class="form-group col-md-12">
                 <textarea name="address" placeholder="Address" cols="40" rows="5" class="form-control" required='required'></textarea>
               </div>
             </div>
-
             <div class="form-row py-2">
-              <button type="submit" class="btn btn-primary shadow">Submit</button>
+              <button name="submit" type="submit" class="btn btn-primary shadow">Submit</button>
             </div>
-            
+
           </form>
         </div>
       </div>

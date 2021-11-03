@@ -1,3 +1,14 @@
+<?php
+
+include 'db_connection.php';
+session_start();
+// when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
+if (!isset($_SESSION['userEmail'])) {
+    header("location: index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +67,7 @@
 
         <div class="col-lg-7 col-md-8 col-sm-12 justify-content-center m-3">
 
-            <h3 class="m-3 text-center text-white"><strong>Welcome! User</strong></h3>
+            <h3 class="m-3 text-center text-white"><strong>Welcome! <?php echo $_SESSION['userName']; ?></strong></h3>
             <p class="mb-4 text-center text-white">This is your dashboard. Now you can access all the features of our library from here.</p>
 
             <div class="input-group">

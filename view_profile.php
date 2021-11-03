@@ -1,3 +1,30 @@
+<?php
+
+include 'db_connection.php';
+session_start();
+
+// declare variable
+$username = '';
+$useremail = '';
+$usermobile = '';
+$useraddress = '';
+
+$sql = "SELECT * FROM `user_tbl` WHERE Email = '$_SESSION[userEmail]'";
+$result = mysqli_query($connection, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $username = $row['Name'];
+    $useremail = $row['Email'];
+    $usermobile = $row['Mobile'];
+    $useraddress = $row['Address'];
+}
+
+// when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
+if (!isset($_SESSION['userEmail'])) {
+    header("location: index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,28 +87,28 @@
             <div class="form-group row align-items-center">
                 <label class="col-4">Name:</label>
                 <div class="col-8">
-                    <input name="name" disabled class="form-control alert-primary" value="Habid Hossen">
+                    <input name="name" disabled class="form-control alert-primary" value="<?php echo $username; ?>">
                 </div>
             </div>
 
             <div class="form-group row align-items-center mt-2">
                 <label class="col-4">Email:</label>
                 <div class="col-8">
-                    <input name="name" disabled class="form-control alert-primary" value="habidhossen@gmail.com">
+                    <input name="name" disabled class="form-control alert-primary" value="<?php echo $useremail; ?>">
                 </div>
             </div>
 
             <div class="form-group row align-items-center mt-2">
                 <label class="col-4">Mobile No:</label>
                 <div class="col-8">
-                    <input name="name" disabled class="form-control alert-primary" value="01854092871">
+                    <input name="name" disabled class="form-control alert-primary" value="<?php echo $usermobile; ?>">
                 </div>
             </div>
 
             <div class="form-group row align-items-center mt-2">
                 <label class="col-4">Address:</label>
                 <div class="col-8">
-                    <input name="name" disabled class="form-control alert-primary" value="Chattogram, Bangladesh">
+                    <input name="name" disabled class="form-control alert-primary" value="<?php echo $useraddress; ?>">
                 </div>
             </div>
         </form>
