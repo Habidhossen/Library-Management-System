@@ -6,22 +6,22 @@ session_start();
 $showSuccess = false;
 $showError = false;
 
-
 // update profile
 if (isset($_POST['change_password'])) {
 
     $password = '';
     $current_pass = $_POST['current_password'];
     $new_pass = $_POST['new_password'];
+    $confirm_new_password = $_POST['confirm_new_password'];
 
     $sql = "SELECT * FROM `user_tbl` WHERE Email = '$_SESSION[userEmail]'";
     $result = mysqli_query($connection, $sql);
 
     while ($row = mysqli_fetch_assoc($result)) {
-        $password = $row['Password'];
+        $db_password = $row['Password'];
     }
 
-    if ($password == $current_pass) {
+    if ($db_password == $current_pass && $new_pass == $confirm_new_password) {
         $sql = "UPDATE `user_tbl` SET Password ='$new_pass' WHERE Email = '$_SESSION[userEmail]'";
         $result = mysqli_query($connection, $sql);
         if ($result) {
@@ -30,10 +30,9 @@ if (isset($_POST['change_password'])) {
             $showError = 'Password change failed!';
         }
     } else {
-        $showError = "Current password didn't match! Try again";
+        $showError = "Password didn't match! Please enter correct password.";
     }
 }
-
 
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
 if (!isset($_SESSION['userEmail'])) {
@@ -41,6 +40,7 @@ if (!isset($_SESSION['userEmail'])) {
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -130,6 +130,12 @@ if (!isset($_SESSION['userEmail'])) {
                     <input name="new_password" type="password" class="form-control alert-primary" required value="">
                 </div>
             </div>
+            <div class="form-group row align-items-center mt-2">
+                <label class="col-4">Re-type new Password:</label>
+                <div class="col-8">
+                    <input name="confirm_new_password" type="password" class="form-control alert-primary" required value="">
+                </div>
+            </div>
             <div class="mt-3">
                 <button name="change_password" type="submit" class="w-100 btn btn-primary btn-sm">Change Password</button>
             </div>
@@ -137,7 +143,6 @@ if (!isset($_SESSION['userEmail'])) {
 
     </div>
     <!-- ======= Change-Password ends here======= -->
-
 
 
 

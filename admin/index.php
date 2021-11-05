@@ -1,3 +1,41 @@
+<?php
+
+session_start();
+include '../db_connection.php';
+
+if (isset($_POST['login'])) {
+
+  $email = $_POST['email']; //input-email stored in variable
+  $password = $_POST['password']; ////input-password stored in variable
+
+  $sql = "SELECT * FROM `admin_tbl` WHERE Email = '$email'";
+  $result = mysqli_query($connection, $sql);
+
+  $num = mysqli_num_rows($result);
+  if ($num == 1) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      if ($_POST['password'] === $row['Password']) {
+
+        $_SESSION['adminId'] = $row['Id'];
+        $_SESSION['adminName'] = $row['Name'];
+        $_SESSION['adminEmail'] = $row['Email'];
+
+        header("location: admin_dashboard.php");
+        exit;
+      } else {
+        // echo 'Wrong password';
+        $wrongPassword = '';
+      }
+    }
+  } else {
+    // echo 'Invalid email';
+    $wrongEmail = '';
+  }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,8 +49,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <!-- add bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- add css file -->
   <link rel="stylesheet" href="../css/style.css">
   <!-- add favicon file -->
@@ -22,8 +59,7 @@
 <body>
 
   <!-- ======= Header starts here ======= -->
-  <header
-    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 border-bottom header-design">
+  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 border-bottom header-design">
     <a href="index.php" class="d-flex align-items-center mb-3 mb-lg-0 text-dark text-decoration-none">
       <img class="bi me-2" width="40" height="32" src="../images/logo.svg">
       <use xlink:href="#bootstrap"></use></img>
@@ -46,8 +82,7 @@
 
 
   <!-- ======= Body-Cover starts here ======= -->
-  <section class="site-hero" style="background-image:url(../images/cover_02.jpg)" id="section-home"
-    data-stellar-background-ratio="0.5">
+  <section class="site-hero" style="background-image:url(../images/cover_02.jpg)" id="section-home" data-stellar-background-ratio="0.5">
     <div class="container">
       <div class="row intro-text align-items-center justify-content-center">
         <div class="col-md-10 text-center pt-5">
@@ -77,26 +112,47 @@
       </div>
 
       <div class="col-md-10 mx-auto col-lg-5">
-        <form class="p-4 p-md-5 border rounded-3 bg-light text-center shadow">
-          <img class="mb-4" src="../images/logo.svg" alt="" width="72" height="57">
-          <h1 class="h5 mb-3 fw-bold">Admin login!</h1>
-          <hr class="my-4">
+        <div class="p-4 p-md-5 border rounded-3 bg-light text-center shadow">
 
-          <!-- admin login option -->
-          <div class="form-floating mb-3">
-            <input name="email" type="email" class="form-control" placeholder="name@example.com" required>
-            <label for="email">Email address</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input name="password" type="password" class="form-control" placeholder="Password" required>
-            <label for="password">Password</label>
-          </div>
-          <button name="login" class="w-100 btn btn-lg btn-success" type="submit">Log in</button>
+          <!-- Admin-login option -->
+          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 
-          <!-- <br><br><span class="alert-danger small" >Wrong Password!</span> -->
+            <img class="mb-4" src="../images/logo.svg" alt="" width="72" height="57">
+            <h1 class="h5 mb-3 fw-bold">Admin login!</h1>
+            <hr class="my-4">
 
-        
-        </form>
+            <div class="form-floating mb-3">
+              <input name="email" type="email" class="form-control" placeholder="name@example.com" required>
+              <label for="email">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input name="password" type="password" class="form-control" placeholder="Password" required>
+              <label for="password">Password</label>
+            </div>
+            <button name="login" class="w-100 btn btn-lg btn-success" type="submit">Log in</button>
+
+            <!-- PHP Coding for showing alert -->
+            <?php
+            if (isset($wrongPassword)) {
+            ?>
+              <br><br>
+              <div class="alert alert-danger alert-dismissible fade show small" role="alert">
+                Wrong Password!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php
+            }
+            if (isset($wrongEmail)) {
+            ?>
+              <br><br>
+              <div class="alert alert-warning alert-dismissible fade show small" role="alert">
+                Invalid Email!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php
+            }
+            ?>
+          </form>
       </div>
     </div>
   </div>
@@ -116,15 +172,9 @@
 
 
   <!-- ======= Bootstrap, JavaScript CDN add ======= -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-    integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
-    integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 </body>
 
 </html>

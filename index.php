@@ -5,8 +5,8 @@ include 'db_connection.php';
 
 if (isset($_POST['login'])) {
 
-  $email = $_POST['email']; //input email stored in variable
-  $password = $_POST['password']; ////input password stored in variable
+  $email = $_POST['email']; //input-email stored in variable
+  $password = $_POST['password']; ////input-password stored in variable
 
   $sql = "SELECT * FROM `user_tbl` WHERE Email = '$email'";
   $result = mysqli_query($connection, $sql);
@@ -31,10 +31,28 @@ if (isset($_POST['login'])) {
     // echo 'Invalid email';
     $wrongEmail = '';
   }
+
+  // login system with hashing password...
+  // if (mysqli_num_rows($result) == 1) {
+  //   $row = mysqli_fetch_assoc($result);
+
+  //   if (password_verify($password, $row['Password'])) {
+  //     $_SESSION['userId'] = $row['Id'];
+  //     $_SESSION['userName'] = $row['Name'];
+  //     $_SESSION['userEmail'] = $row['Email'];
+  //     header('Location: user_dashboard.php');
+  //     exit;
+
+  //   } else {
+  //     $wrongPassword = '';
+  //   }
+  // } else {
+  //   $wrongEmail = '';
+  // }
 }
 
 // if User already logged in, then there in no need to login again. He/she will be able to access direct userDashboard file.
-if(isset($_SESSION['userEmail'])){
+if (isset($_SESSION['userEmail'])) {
   header("location: user_dashboard.php");
 }
 

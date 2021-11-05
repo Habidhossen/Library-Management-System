@@ -1,3 +1,15 @@
+<?php
+
+include '../db_connection.php';
+session_start();
+
+// when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
+if (!isset($_SESSION['adminEmail'])) {
+    header("location: admin/index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +56,7 @@
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
 
-            <a href="" class="btn btn-danger btn-sm shadow">Log out</a>
+            <a href="logout.php" class="btn btn-danger btn-sm shadow">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->

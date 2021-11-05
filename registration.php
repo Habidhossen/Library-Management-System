@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $mobile = $_POST['mobile'];
     $address = $_POST['address'];
-
+    // $hash_password = password_hash($password, PASSWORD_BCRYPT); //encrypt password using CRYPT_BLOWFISH algorithm.
 
     $emailQuery = "SELECT * FROM `user_tbl` WHERE Email = '$email'";
     $query = mysqli_query($connection, $emailQuery);
@@ -27,10 +27,8 @@ if (isset($_POST['submit'])) {
     } 
     
     else {
-        // $hash_password = password_hash($password, PASSWORD_BCRYPT); //encrypt password using CRYPT_BLOWFISH algorithm
-
-        $query = "INSERT INTO `user_tbl`(`Name`, `Email`, `Password`, `Mobile`, `Address`) VALUES ('$name','$email','$password','$mobile','$address')";
-        $query_run = mysqli_query($connection, $query);
+        $sql = "INSERT INTO `user_tbl`(`Name`, `Email`, `Password`, `Mobile`, `Address`) VALUES ('$name','$email','$password','$mobile','$address')";
+        $query = mysqli_query($connection, $sql);
     ?>
         <!-- JavaScript Coding... -->
         <script type="text/javascript">

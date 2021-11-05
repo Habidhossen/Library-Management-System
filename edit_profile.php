@@ -30,7 +30,6 @@ if (isset($_POST['update_profile'])) {
 
     if ($result) {
         $showSuccess = 'Successfully updated!';
-        // header("location: edit_profile.php");
     } else {
         $showError = 'Update failed!';
     }

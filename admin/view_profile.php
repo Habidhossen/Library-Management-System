@@ -1,3 +1,26 @@
+<?php
+
+include '../db_connection.php';
+session_start();
+
+// declare variable
+$adminname = '';
+$adminemail = '';
+
+$sql = "SELECT * FROM `admin_tbl` WHERE Email = '$_SESSION[adminEmail]'";
+$result = mysqli_query($connection, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $adminname = $row['Name'];
+    $adminemail = $row['Email'];
+}
+
+// when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
+if (!isset($_SESSION['adminEmail'])) {
+    header("location: admin/index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,14 +84,14 @@
             <div class="form-group row align-items-center">
                 <label class="col-4">Name:</label>
                 <div class="col-8">
-                    <input name="name" disabled class="form-control alert-success" value="Admin">
+                    <input name="name" disabled class="form-control alert-success" value="<?php echo $adminname; ?>">
                 </div>
             </div>
 
             <div class="form-group row align-items-center mt-2">
                 <label class="col-4">Email:</label>
                 <div class="col-8">
-                    <input name="name" disabled class="form-control alert-success" value="admin@gmail.com">
+                    <input name="name" disabled class="form-control alert-success" value="<?php echo $adminemail; ?>">
                 </div>
             </div>
         </form>
