@@ -19,23 +19,15 @@ if (isset($_POST['submit'])) {
         echo 'email already exists';
 ?>
         <!-- JavaScript Coding... -->
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
             alert("Email already exists! Please enter a  valid email.")
             window.location.href = "signup.php";
-        </script>
-    <?php
-    } 
-    
-    else {
+        </script> -->
+<?php
+    } else {
         $sql = "INSERT INTO `user_tbl`(`Name`, `Email`, `Password`, `Mobile`, `Address`) VALUES ('$name','$email','$password','$mobile','$address')";
         $query = mysqli_query($connection, $sql);
-    ?>
-        <!-- JavaScript Coding... -->
-        <script type="text/javascript">
-            alert("Registration successfully. You may login now")
-            window.location.href = "index.php";
-        </script>
-<?php
+        header("location: registration_successfull.php");
     }
 }
 
