@@ -1,3 +1,32 @@
+<!-- PHP Coding... -->
+<?php
+
+include 'db_connection.php';
+$showInvalidEmail = false;
+
+if (isset($_POST['submit'])) {
+
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $mobile = $_POST['mobile'];
+  $address = $_POST['address'];
+  // $hash_password = password_hash($password, PASSWORD_BCRYPT); //encrypt password using CRYPT_BLOWFISH algorithm.
+
+  $emailQuery = "SELECT * FROM `user_tbl` WHERE Email = '$email'";
+  $query = mysqli_query($connection, $emailQuery);
+  $emailCount = mysqli_num_rows($query);
+  if ($emailCount > 0) {
+    $showInvalidEmail = 'Email already exists! Please enter a valid email.';
+  } else {
+    $sql = "INSERT INTO `user_tbl`(`Name`, `Email`, `Password`, `Mobile`, `Address`) VALUES ('$name','$email','$password','$mobile','$address')";
+    $query = mysqli_query($connection, $sql);
+    header("location: registration_successfull.php");
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +110,17 @@
         <div class="col-md-8 py-5 border">
           <h5 class="pb-4 fw-bold">Please fill with your details</h5>
 
-          <form action="registration.php" method="POST">
+          <!-- PHP Coding for showing alert -->
+          <?php
+          if ($showInvalidEmail) {
+            echo '<div class="alert alert-danger alert-dismissible fade show small" role="alert">
+                  ' . $showInvalidEmail . '
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> ';
+          }
+          ?>
+
+          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="row py-2">
               <div class="form-group col-md-6">
                 <input name="name" placeholder="Full Name" class="form-control" type="text" required="required">

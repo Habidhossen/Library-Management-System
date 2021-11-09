@@ -1,6 +1,7 @@
 <?php
 
 include '../db_connection.php';
+include 'functions.php';
 session_start();
 
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
@@ -274,67 +275,9 @@ if (!isset($_SESSION['adminEmail'])) {
     <!-- ======= Admin-Dashboard starts here======= -->
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3 mt-2 g-4">
-
-            <!-- <div class="col">
-                <div class="card bg-light shadow">
-                    <div class="card-body my-3">
-                        <h3 class="text-primary">100</h3>
-                        <span>Total Users</span>
-                    </div>
-                    <a href="#" class="btn bg-primary text-white">View</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card bg-light shadow">
-                    <div class="card-body my-3">
-                        <h3 class="text-success">156</h3>
-                        <span>Total Books</span>
-                    </div>
-                    <a href="#" class="btn bg-success text-white">View</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card bg-light shadow">
-                    <div class="card-body my-3">
-                        <h3 class="text-danger">85</h3>
-                        <span>Issued Book</span>
-                    </div>
-                    <a href="#" class="btn bg-danger text-white">View</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card bg-light shadow">
-                    <div class="card-body my-3">
-                        <h3 class="text-danger">56</h3>
-                        <span>Total Authors</span>
-                    </div>
-                    <a href="#" class="btn bg-danger text-white">View</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card bg-light shadow">
-                    <div class="card-body my-3">
-                        <h3 class="text-primary">27</h3>
-                        <span>Total Category</span>
-                    </div>
-                    <a href="#" class="btn bg-primary text-white">View</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card bg-light shadow">
-                    <div class="card-body my-3">
-                        <h3 class="text-success">18</h3>
-                        <span>Book Request</span>
-                    </div>
-                    <a href="#" class="btn bg-success text-white">View</a>
-                </div>
-            </div> -->
-
-
-
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-primary"><strong>0</strong></h4>
+                    <h4 class="card-title text-primary"><strong><?php echo userCountFunction(); ?></strong></h4>
                     <p class="card-text">Total Users</p>
                     <a href="#" class="btn btn-outline-primary d-flex justify-content-center">View</a>
                 </div>
@@ -355,14 +298,14 @@ if (!isset($_SESSION['adminEmail'])) {
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-danger"><strong>0</strong></h4>
+                    <h4 class="card-title text-danger"><strong><?php echo authorCountFunction(); ?></strong></h4>
                     <p class="card-text">Total Authors</p>
                     <a href="#" class="btn btn-outline-danger d-flex justify-content-center">View</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-primary"><strong>0</strong></h4>
+                    <h4 class="card-title text-primary"><strong><?php echo categoryCountFunction(); ?></strong></h4>
                     <p class="card-text">Total Category</p>
                     <a href="#" class="btn btn-outline-primary d-flex justify-content-center">View</a>
                 </div>
