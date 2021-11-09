@@ -1,7 +1,6 @@
 <?php
 
 include '../db_connection.php';
-include 'functions.php';
 session_start();
 
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
@@ -19,6 +18,9 @@ if (!isset($_SESSION['adminEmail'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <!-- Datatable CSS CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <!-- add custom font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,7 +78,7 @@ if (!isset($_SESSION['adminEmail'])) {
                     <ul class="navbar-nav">
 
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Dashboard</a>
+                            <a class="nav-link text-white" href="admin_dashboard.php">Dashboard</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -270,57 +272,63 @@ if (!isset($_SESSION['adminEmail'])) {
     <!-- ======= Admin-Nav all modal(add book, add Category, add author) ends here======= -->
 
 
+    <div class="container custom-datatable-card mb-4">
 
+        <h5 class="text-center fw-bold mb-4">Registered Member</h5>
 
-    <!-- ======= Admin-Dashboard starts here======= -->
-    <div class="container">
-        <div class="row row-cols-1 row-cols-md-3 mt-2 g-4">
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-primary"><strong><?php echo userCountFunction(); ?></strong></h4>
-                    <p class="card-text">Total Users</p>
-                    <a href="reg_users.php" class="btn btn-outline-primary d-flex justify-content-center">View</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-success"><strong>0</strong></h4>
-                    <p class="card-text">Total Books</p>
-                    <a href="#" class="btn btn-outline-success d-flex justify-content-center">View</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-danger"><strong>0</strong></h4>
-                    <p class="card-text"> Total Issued Book</p>
-                    <a href="#" class="btn btn-outline-danger d-flex justify-content-center">View</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-danger"><strong><?php echo authorCountFunction(); ?></strong></h4>
-                    <p class="card-text">Total Authors</p>
-                    <a href="reg_author.php" class="btn btn-outline-danger d-flex justify-content-center">View</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-primary"><strong><?php echo categoryCountFunction(); ?></strong></h4>
-                    <p class="card-text">Total Category</p>
-                    <a href="reg_category.php" class="btn btn-outline-primary d-flex justify-content-center">View</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-success"><strong>0</strong></h4>
-                    <p class="card-text">Total Book Request</p>
-                    <a href="#" class="btn btn-outline-success d-flex justify-content-center">View</a>
-                </div>
-            </div>
-        </div>
+        <table id="manageUserTable" class="table table-hover table-bordered small">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile no.</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Reg. Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- Showing users all information from database(users_tbl) -->
+                <?php
+                // declare empty variable for storing users data
+                $id = "";
+                $name = "";
+                $email = "";
+                $mobile = "";
+                $address = "";
+                $regDate = "";
+                
+                $sql = "SELECT * FROM user_tbl";
+                $query = mysqli_query($connection, $sql);
+                while ($row = mysqli_fetch_assoc($query)) {
+                    $id = $row['Id'];
+                    $name = $row['Name'];
+                    $email = $row['Email'];
+                    $mobile = $row['Mobile'];
+                    $address = $row['Address'];
+                    $regDate = $row['Reg_Date'];
+
+                ?>
+                    <tr>
+                        <td><?php echo $id; ?></td>
+                        <td><?php echo $name; ?></td>
+                        <td><?php echo $email; ?></td>
+                        <td><?php echo $mobile; ?></td>
+                        <td><?php echo $address; ?></td>
+                        <td><?php echo $regDate; ?></td>
+                        <td class="text-center">
+                            <a href="" class="btn btn-secondary btn-sm">Edit</a>
+                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+
+        </table>
     </div>
-    <!-- ======= Admin-Dashboard ends here======= -->
-
 
 
 
@@ -336,6 +344,22 @@ if (!isset($_SESSION['adminEmail'])) {
     <!-- ======= Bootstrap, JavaScript CDN add ======= -->
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+
+    <!-- ======= **DATATABLE CDN START** ======= -->
+
+    <!-- Datatable Javascript CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- Datatable Javascript -->
+    <script>
+        $(document).ready(function() {
+            $('#manageUserTable').DataTable();
+        });
+    </script>
+    <!-- ======= **DATATABLE CDN END*  ======= -->
 
 </body>
 
