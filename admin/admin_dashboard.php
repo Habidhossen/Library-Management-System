@@ -4,6 +4,23 @@ include '../db_connection.php';
 include 'functions.php';
 session_start();
 
+// add author
+if (isset($_POST['add-author'])) {
+    $authorName = $_POST['author-name'];
+    $sql = "INSERT INTO `author_tbl`(`Author_Name`) VALUES ('$authorName')";
+    $query = mysqli_query($connection, $sql);
+    header("location: admin_dashboard.php");
+}
+// add category
+if (isset($_POST['add-category'])) {
+    $categoryName = $_POST['category-name'];
+    $sql = "INSERT INTO `category_tbl`(`Category_Name`) VALUES ('$categoryName')";
+    $query = mysqli_query($connection, $sql);
+    header("location: admin_dashboard.php");
+}
+
+
+
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
 if (!isset($_SESSION['adminEmail'])) {
     header("location: admin/index.php");
@@ -95,7 +112,7 @@ if (!isset($_SESSION['adminEmail'])) {
                             </a>
                             <ul class="dropdown-menu" style="background-color: darkcyan;" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a href="" class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#addAuthor">Add Author</a></li>
-                                <li><a class="dropdown-item text-white" href="#">Manage Author</a></li>
+                                <li><a class="dropdown-item text-white" href="reg_author.php">Manage Author</a></li>
                             </ul>
                         </li>
 
@@ -105,7 +122,7 @@ if (!isset($_SESSION['adminEmail'])) {
                             </a>
                             <ul class="dropdown-menu" style="background-color: darkcyan;" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#addCategory">Add Category</a></li>
-                                <li><a class="dropdown-item text-white" href="#">Manage Category</a></li>
+                                <li><a class="dropdown-item text-white" href="reg_category.php">Manage Category</a></li>
                             </ul>
                         </li>
 
@@ -178,22 +195,21 @@ if (!isset($_SESSION['adminEmail'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group small">
-                            <label class="col-form-label">Author ID:</label>
-                            <input type="text" name="" class="form-control">
-                        </div>
+
+                <!-- add new author form -->
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="modal-body">
                         <div class="form-group small">
                             <label class="col-form-label">Author Name:</label>
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="author-name" class="form-control" required>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">SAVE</a>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                        <button type="submit" name="add-author" class="btn btn-success btn-sm">SAVE</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -207,18 +223,21 @@ if (!isset($_SESSION['adminEmail'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
+
+                <!-- add new category form -->
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="modal-body">
                         <div class="form-group small">
                             <label class="col-form-label">Category Name:</label>
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="category-name" class="form-control" required>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">SAVE</a>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                        <button type="submit" name="add-category" class="btn btn-success btn-sm">SAVE</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -279,43 +298,43 @@ if (!isset($_SESSION['adminEmail'])) {
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-primary"><strong><?php echo userCountFunction(); ?></strong></h4>
                     <p class="card-text">Total Users</p>
-                    <a href="reg_users.php" class="btn btn-outline-primary d-flex justify-content-center">View</a>
+                    <a href="reg_users.php" class="btn btn-outline-primary d-flex justify-content-center">View more</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-success"><strong>0</strong></h4>
                     <p class="card-text">Total Books</p>
-                    <a href="#" class="btn btn-outline-success d-flex justify-content-center">View</a>
+                    <a href="#" class="btn btn-outline-success d-flex justify-content-center">View more</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-danger"><strong>0</strong></h4>
                     <p class="card-text"> Total Issued Book</p>
-                    <a href="#" class="btn btn-outline-danger d-flex justify-content-center">View</a>
+                    <a href="#" class="btn btn-outline-danger d-flex justify-content-center">View more</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-danger"><strong><?php echo authorCountFunction(); ?></strong></h4>
                     <p class="card-text">Total Authors</p>
-                    <a href="reg_author.php" class="btn btn-outline-danger d-flex justify-content-center">View</a>
+                    <a href="reg_author.php" class="btn btn-outline-danger d-flex justify-content-center">View more</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-primary"><strong><?php echo categoryCountFunction(); ?></strong></h4>
                     <p class="card-text">Total Category</p>
-                    <a href="reg_category.php" class="btn btn-outline-primary d-flex justify-content-center">View</a>
+                    <a href="reg_category.php" class="btn btn-outline-primary d-flex justify-content-center">View more</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-success"><strong>0</strong></h4>
                     <p class="card-text">Total Book Request</p>
-                    <a href="#" class="btn btn-outline-success d-flex justify-content-center">View</a>
-                </div>
+                    <a href="#" class="btn btn-outline-success d-flex justify-content-center">View more</a>
+                </div> 
             </div>
         </div>
     </div>

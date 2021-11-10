@@ -320,7 +320,7 @@ if (!isset($_SESSION['adminEmail'])) {
                         <td><?php echo $regDate; ?></td>
                         <td class="text-center">
                             <a href="" class="btn btn-secondary btn-sm">Edit</a>
-                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="delete_user.php" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                 <?php
@@ -329,15 +329,6 @@ if (!isset($_SESSION['adminEmail'])) {
 
         </table>
     </div>
-
-
-
-    <!-- ======= Footer starts here ======= -->
-    <footer>
-        <p class="text-center small fixed-bottom">Copyright © 2021 Team <strong>Free Thinkers</strong>, All right reserved</p>
-    </footer>
-    <!-- ======= Footer ends here ======= -->
-
 
 
 

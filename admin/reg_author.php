@@ -316,14 +316,6 @@ if (!isset($_SESSION['adminEmail'])) {
 
 
 
-    <!-- ======= Footer starts here ======= -->
-    <footer>
-        <p class="text-center small fixed-bottom">Copyright © 2021 Team <strong>Free Thinkers</strong>, All right reserved</p>
-    </footer>
-    <!-- ======= Footer ends here ======= -->
-
-
-
 
     <!-- ======= Bootstrap, JavaScript CDN add ======= -->
     <!-- JavaScript Bundle with Popper -->
