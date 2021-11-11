@@ -1,8 +1,8 @@
 <!-- PHP Coding... -->
 <?php
 
+session_start();
 include 'db_connection.php';
-$showInvalidEmail = false;
 
 if (isset($_POST['submit'])) {
 
@@ -16,8 +16,11 @@ if (isset($_POST['submit'])) {
   $emailQuery = "SELECT * FROM `user_tbl` WHERE Email = '$email'";
   $query = mysqli_query($connection, $emailQuery);
   $emailCount = mysqli_num_rows($query);
+
   if ($emailCount > 0) {
-    $showInvalidEmail = 'Email already exists! Please enter a valid email.';
+    $_SESSION['emailExistsAlert'] = 'Email already exists! Please enter a valid email.';
+    header("location: signup.php");
+    exit;
   } else {
     $sql = "INSERT INTO `user_tbl`(`Name`, `Email`, `Password`, `Mobile`, `Address`) VALUES ('$name','$email','$password','$mobile','$address')";
     $query = mysqli_query($connection, $sql);
@@ -112,11 +115,14 @@ if (isset($_POST['submit'])) {
 
           <!-- PHP Coding for showing alert -->
           <?php
-          if ($showInvalidEmail) {
-            echo '<div class="alert alert-danger alert-dismissible fade show small" role="alert">
-                  ' . $showInvalidEmail . '
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div> ';
+          if (isset($_SESSION['emailExistsAlert'])) {
+          ?>
+            <div class="alert alert-warning alert-dismissible fade show small" role="alert">
+              <?php echo $_SESSION['emailExistsAlert'];
+              unset($_SESSION['emailExistsAlert']); ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          <?php
           }
           ?>
 

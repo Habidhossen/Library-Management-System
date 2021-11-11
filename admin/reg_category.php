@@ -274,6 +274,20 @@ if (!isset($_SESSION['adminEmail'])) {
 
     <div class="container custom-datatable-card mb-4">
 
+        <!-- showing action alert! PHP -->
+        <?php
+        if (isset($_SESSION['categoryDeleteAlert'])) {
+        ?>
+            <div class="alert alert-warning alert-dismissible fade show small" role="alert">
+                <strong>Category</strong>
+                <?php echo $_SESSION['categoryDeleteAlert'];
+                unset($_SESSION['categoryDeleteAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        ?>
+
         <h5 class="text-center fw-bold mb-4">Book Category</h5>
 
         <table id="manageUserTable" class="table table-hover table-bordered small">
@@ -291,7 +305,7 @@ if (!isset($_SESSION['adminEmail'])) {
                 // declare empty variable for storing users data
                 $categoryId = "";
                 $categoryName = "";
-                
+
                 $sql = "SELECT * FROM category_tbl";
                 $query = mysqli_query($connection, $sql);
                 while ($row = mysqli_fetch_assoc($query)) {
@@ -304,13 +318,12 @@ if (!isset($_SESSION['adminEmail'])) {
                         <td><?php echo $categoryName; ?></td>
                         <td class="text-center">
                             <a href="" class="btn btn-secondary btn-sm">Edit</a>
-                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="action/delete_category.php/?categoryID=<?php echo $row['Category_Id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                 <?php
                 }
                 ?>
-
         </table>
     </div>
 

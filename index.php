@@ -24,12 +24,18 @@ if (isset($_POST['login'])) {
         exit;
       } else {
         // echo 'Wrong password';
-        $wrongPassword = '';
+        // $wrongPassword = '';
+        $_SESSION['wrongPasswordAlert'] = 'Wrong Password!';
+        header("location: index.php");
+        exit;
       }
     }
   } else {
     // echo 'Invalid email';
-    $wrongEmail = '';
+    // $wrongEmail = '';
+    $_SESSION['invalidEmailAlert'] = 'Invalid Email!';
+    header("location: index.php");
+    exit;
   }
 
   // login system with hashing password...
@@ -158,20 +164,22 @@ if (isset($_SESSION['userEmail'])) {
 
             <!-- PHP Coding for showing alert -->
             <?php
-            if (isset($wrongPassword)) {
+            if (isset($_SESSION['wrongPasswordAlert'])) {
             ?>
               <br><br>
               <div class="alert alert-danger alert-dismissible fade show small" role="alert">
-                Wrong Password!
+                <?php echo $_SESSION['wrongPasswordAlert'];
+                unset($_SESSION['wrongPasswordAlert']); ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             <?php
             }
-            if (isset($wrongEmail)) {
+            if (isset($_SESSION['invalidEmailAlert'])) {
             ?>
               <br><br>
               <div class="alert alert-warning alert-dismissible fade show small" role="alert">
-                Invalid Email!
+                <?php echo $_SESSION['invalidEmailAlert'];
+                unset($_SESSION['invalidEmailAlert']); ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             <?php

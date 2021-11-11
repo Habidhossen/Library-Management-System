@@ -278,7 +278,6 @@ if (!isset($_SESSION['adminEmail'])) {
         <?php
         if (isset($_SESSION['authorDeleteAlert'])) {
         ?>
-            <br><br>
             <div class="alert alert-warning alert-dismissible fade show small" role="alert">
                 <strong>Author</strong>
                 <?php echo $_SESSION['authorDeleteAlert'];

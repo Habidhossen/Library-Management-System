@@ -269,6 +269,10 @@ if (!isset($_SESSION['adminEmail'])) {
                 </div>
                 <div class="modal-body">
                     <form>
+                    <div class="form-group small">
+                            <label class="col-form-label">Student ID:</label>
+                            <input type="text" name="" class="form-control">
+                        </div>
                         <div class="form-group small">
                             <label class="col-form-label">Book Name:</label>
                             <input type="text" name="" class="form-control">
@@ -283,10 +287,6 @@ if (!isset($_SESSION['adminEmail'])) {
                         </div>
                         <div class="form-group small">
                             <label class="col-form-label">Category ID:</label>
-                            <input type="text" name="" class="form-control">
-                        </div>
-                        <div class="form-group small">
-                            <label class="col-form-label">Student ID:</label>
                             <input type="text" name="" class="form-control">
                         </div>
                         <div class="form-group small">

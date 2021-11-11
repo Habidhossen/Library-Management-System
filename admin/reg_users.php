@@ -274,8 +274,21 @@ if (!isset($_SESSION['adminEmail'])) {
 
     <div class="container custom-datatable-card mb-4">
 
-        <h5 class="text-center fw-bold mb-4">Registered Member</h5>
+        <!-- showing action alert! PHP -->
+        <?php
+        if (isset($_SESSION['userDeleteAlert'])) {
+        ?>
+            <div class="alert alert-warning alert-dismissible fade show small" role="alert">
+                <strong>Member</strong>
+                <?php echo $_SESSION['userDeleteAlert'];
+                unset($_SESSION['userDeleteAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        ?>
 
+        <h5 class="text-center fw-bold mb-4">Registered Member</h5>
         <table id="manageUserTable" class="table table-hover table-bordered small">
             <thead>
                 <tr>
@@ -299,7 +312,7 @@ if (!isset($_SESSION['adminEmail'])) {
                 $mobile = "";
                 $address = "";
                 $regDate = "";
-                
+
                 $sql = "SELECT * FROM user_tbl";
                 $query = mysqli_query($connection, $sql);
                 while ($row = mysqli_fetch_assoc($query)) {
@@ -320,7 +333,7 @@ if (!isset($_SESSION['adminEmail'])) {
                         <td><?php echo $regDate; ?></td>
                         <td class="text-center">
                             <a href="" class="btn btn-secondary btn-sm">Edit</a>
-                            <a href="delete_user.php" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="action/delete_users.php/?userID=<?php echo $row['Id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                 <?php

@@ -3,9 +3,6 @@
 include '../db_connection.php';
 session_start();
 
-$showSuccess = false;
-$showError = false;
-
 // update profile
 if (isset($_POST['change_password'])) {
 
@@ -25,12 +22,16 @@ if (isset($_POST['change_password'])) {
         $sql = "UPDATE `admin_tbl` SET Password ='$new_pass' WHERE Email = '$_SESSION[adminEmail]'";
         $result = mysqli_query($connection, $sql);
         if ($result) {
-            $showSuccess = 'Password changed succesfully!';
+            $_SESSION['passChangeAlert'] = 'Password Changed Succesfully!';
+            header("location: change_password.php");
+            exit;
         } else {
-            $showError = 'Password change failed!';
+            echo 'Something went wrong!';
         }
     } else {
-        $showError = "Password didn't match! Please enter correct password.";
+        $_SESSION['passFailAlert'] = "Password didn't match! Please enter a correct password.";
+        header("location: change_password.php");
+        exit;
     }
 }
 
@@ -103,17 +104,23 @@ if (!isset($_SESSION['adminEmail'])) {
 
         <!-- PHP Coding for showing alert -->
         <?php
-        if ($showSuccess) {
-            echo '<div class="alert alert-success alert-dismissible fade show small" role="alert">
-                  ' . $showSuccess . '
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div> ';
+        if (isset($_SESSION['passChangeAlert'])) {
+        ?>
+            <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                <?php echo $_SESSION['passChangeAlert'];
+                unset($_SESSION['passChangeAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
         }
-        if ($showError) {
-            echo '<div class="alert alert-warning alert-dismissible fade show small" role="alert">
-                  ' . $showError . '
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div> ';
+        if (isset($_SESSION['passFailAlert'])) {
+        ?>
+            <div class="alert alert-warning alert-dismissible fade show small" role="alert">
+                <?php echo $_SESSION['passFailAlert'];
+                unset($_SESSION['passFailAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
         }
         ?>
 

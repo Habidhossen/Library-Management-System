@@ -3,9 +3,6 @@
 include '../db_connection.php';
 session_start();
 
-$showSuccess = false;
-$showError = false;
-
 // declare variable
 $adminname = '';
 
@@ -24,9 +21,11 @@ if (isset($_POST['update_profile'])) {
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
-        $showSuccess = 'Successfully updated!';
+        $_SESSION['profileUpdateAlert'] = 'Updated Successfully!';
+        header("location: edit_profile.php");
+        exit;
     } else {
-        $showError = 'Update failed!';
+        echo 'Something went wrong!';
     }
 }
 
@@ -100,17 +99,14 @@ if (!isset($_SESSION['adminEmail'])) {
 
         <!-- PHP Coding for showing alert -->
         <?php
-        if ($showSuccess) {
-            echo '<div class="alert alert-success alert-dismissible fade show small" role="alert">
-                  ' . $showSuccess . '
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div> ';
-        }
-        if ($showError) {
-            echo '<div class="alert alert-danger alert-dismissible fade show small" role="alert">
-                  ' . $showError . '
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div> ';
+        if (isset($_SESSION['profileUpdateAlert'])) {
+        ?>
+            <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                <?php echo $_SESSION['profileUpdateAlert'];
+                unset($_SESSION['profileUpdateAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
         }
         ?>
 
