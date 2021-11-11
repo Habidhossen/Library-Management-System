@@ -274,8 +274,22 @@ if (!isset($_SESSION['adminEmail'])) {
 
     <div class="container custom-datatable-card mb-4">
 
-        <h5 class="text-center fw-bold mb-4">Book Authors</h5>
+        <!-- showing action alert! PHP -->
+        <?php
+        if (isset($_SESSION['authorDeleteAlert'])) {
+        ?>
+            <br><br>
+            <div class="alert alert-warning alert-dismissible fade show small" role="alert">
+                <strong>Author</strong>
+                <?php echo $_SESSION['authorDeleteAlert'];
+                unset($_SESSION['authorDeleteAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        ?>
 
+        <h5 class="text-center fw-bold mb-4">Book Authors</h5>
         <table id="manageUserTable" class="table table-hover table-bordered small">
             <thead>
                 <tr>
@@ -286,31 +300,29 @@ if (!isset($_SESSION['adminEmail'])) {
             </thead>
             <tbody>
 
-                <!-- Showing all category from database(users_tbl) -->
+                <!-- Showing all authors from database(authtor_tbl) -->
                 <?php
                 // declare empty variable for storing users data
                 $authorId = "";
                 $authorName = "";
-                
+
                 $sql = "SELECT * FROM author_tbl";
                 $query = mysqli_query($connection, $sql);
                 while ($row = mysqli_fetch_assoc($query)) {
                     $authorId = $row['Author_Id'];
                     $authorName = $row['Author_Name'];
-
                 ?>
                     <tr>
                         <td><?php echo $authorId; ?></td>
                         <td><?php echo $authorName; ?></td>
                         <td class="text-center">
                             <a href="" class="btn btn-secondary btn-sm">Edit</a>
-                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="action/delete_author.php/?authorID=<?php echo $row['Author_Id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                 <?php
                 }
                 ?>
-
         </table>
     </div>
 

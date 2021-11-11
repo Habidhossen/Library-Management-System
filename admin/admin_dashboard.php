@@ -9,16 +9,27 @@ if (isset($_POST['add-author'])) {
     $authorName = $_POST['author-name'];
     $sql = "INSERT INTO `author_tbl`(`Author_Name`) VALUES ('$authorName')";
     $query = mysqli_query($connection, $sql);
-    header("location: admin_dashboard.php");
+    if ($query) {
+        $_SESSION['addAuthorAlert'] = 'Added Successfully!';
+        header("location: admin_dashboard.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
 }
 // add category
 if (isset($_POST['add-category'])) {
     $categoryName = $_POST['category-name'];
     $sql = "INSERT INTO `category_tbl`(`Category_Name`) VALUES ('$categoryName')";
     $query = mysqli_query($connection, $sql);
-    header("location: admin_dashboard.php");
+    if ($query) {
+        $_SESSION['addCategoryAlert'] = 'Interserted Successfully!';
+        header("location: admin_dashboard.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
 }
-
 
 
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
@@ -135,6 +146,11 @@ if (!isset($_SESSION['adminEmail'])) {
         </nav>
     </div>
     <!-- ======= Admin-Nav ends here======= -->
+
+
+
+
+
 
 
 
@@ -334,9 +350,35 @@ if (!isset($_SESSION['adminEmail'])) {
                     <h4 class="card-title text-success"><strong>0</strong></h4>
                     <p class="card-text">Total Book Request</p>
                     <a href="#" class="btn btn-outline-success d-flex justify-content-center">View more</a>
-                </div> 
+                </div>
             </div>
         </div>
+
+        <!-- showing data insertion alert! PHP -->
+        <?php
+        if (isset($_SESSION['addAuthorAlert'])) {
+        ?>
+            <br>
+            <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                <strong>Author</strong>
+                <?php echo $_SESSION['addAuthorAlert'];
+                unset($_SESSION['addAuthorAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        if (isset($_SESSION['addCategoryAlert'])) {
+            ?>
+                <br>
+                <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                    <strong>Category</strong>
+                    <?php echo $_SESSION['addCategoryAlert'];
+                    unset($_SESSION['addCategoryAlert']); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php
+            }
+        ?>
     </div>
     <!-- ======= Admin-Dashboard ends here======= -->
 
