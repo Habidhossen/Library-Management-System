@@ -23,7 +23,7 @@ if (isset($_POST['add-category'])) {
     $sql = "INSERT INTO `category_tbl`(`Category_Name`) VALUES ('$categoryName')";
     $query = mysqli_query($connection, $sql);
     if ($query) {
-        $_SESSION['addCategoryAlert'] = 'Interserted Successfully!';
+        $_SESSION['addCategoryAlert'] = 'Added Successfully!';
         header("location: admin_dashboard.php");
         exit;
     } else {

@@ -3,6 +3,25 @@
 include '../db_connection.php';
 session_start();
 
+// update Category
+if (isset($_POST['update_category'])) {
+
+    $categoryId = $_POST['categoryId'];
+    $categoryName = $_POST['categoryName'];
+
+    $sql = "UPDATE `category_tbl` SET Category_name ='$categoryName' WHERE Category_Id = '$categoryId'";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        $_SESSION['categoryUpdateAlert'] = 'Updated Successfully!';
+        header("location: reg_category.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
+}
+
+
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
 if (!isset($_SESSION['adminEmail'])) {
     header("location: admin/index.php");
@@ -286,6 +305,16 @@ if (!isset($_SESSION['adminEmail'])) {
             </div>
         <?php
         }
+        if (isset($_SESSION['categoryUpdateAlert'])) {
+        ?>
+            <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                <strong>Category</strong>
+                <?php echo $_SESSION['categoryUpdateAlert'];
+                unset($_SESSION['categoryUpdateAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
         ?>
 
         <h5 class="text-center fw-bold mb-4">Book Category</h5>
@@ -317,7 +346,7 @@ if (!isset($_SESSION['adminEmail'])) {
                         <td><?php echo $categoryId; ?></td>
                         <td><?php echo $categoryName; ?></td>
                         <td class="text-center">
-                            <a href="" class="btn btn-secondary btn-sm">Edit</a>
+                            <a data-bs-toggle="modal" data-bs-target="#editCategory" class="btn btn-secondary btn-sm editBTN">Edit</a>
                             <a href="action/delete_category.php/?categoryID=<?php echo $row['Category_Id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
@@ -325,6 +354,39 @@ if (!isset($_SESSION['adminEmail'])) {
                 }
                 ?>
         </table>
+    </div>
+
+
+
+    <!-- Edit Author Modal -->
+    <div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h6 class="modal-title fw-bold" id="exampleModalLabel">Edit Category</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+
+                <!-- add new author form -->
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group small">
+                            <input type="hidden" name="categoryId" id="categoryId">
+                        </div>
+                        <div class="form-group small">
+                            <label class="col-form-label">Category Name:</label>
+                            <input type="text" name="categoryName" class="form-control" id="categoryName" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="update_category" class="btn btn-success btn-sm">Update</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
 
 
@@ -349,6 +411,31 @@ if (!isset($_SESSION['adminEmail'])) {
         });
     </script>
     <!-- ======= **DATATABLE CDN END*  ======= -->
+
+
+
+
+    <!-- ======= **Edit-Category JavaScript functionality starts here**  ======= -->
+    <script>
+        $(document).ready(function() {
+
+            $('.editBTN').on('click', function() {
+                $('#editmodal').modal('show');
+
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#categoryId').val(data[0]);
+                $('#categoryName').val(data[1]);
+
+            });
+        });
+    </script>
+    <!-- ======= **Edit-Category JavaScript functionality ends here**  ======= -->
 
 </body>
 

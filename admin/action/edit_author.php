@@ -68,18 +68,18 @@ if (!isset($_SESSION['adminEmail'])) {
     <!-- ======= Admin-Edit-Profile starts here======= -->
     <div class="container col-lg-6 col-md-8 col-sm-8 custom-profile-card">
 
-        <h5 class="mb-3 fw-bold">Edit Author</h5>
+        <h5 class="mb-3 fw-bold">Edit Profile</h5>
         <hr class="my-3">
 
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="form-group row align-items-center">
-                <label class="col-4">Author Name:</label>
+                <label class="col-4">Name:</label>
                 <div class="col-8">
                     <input name="name" class="form-control alert-success" value="">
                 </div>
             </div>
             <div class="mt-3">
-                <button name="update_author" type="submit" class="w-100 btn btn-outline-success btn-sm">Update Author</button>
+                <button name="update_profile" type="submit" class="w-100 btn btn-success btn-sm">Update Profile</button>
             </div>
         </form>
 

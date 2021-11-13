@@ -3,6 +3,28 @@
 include '../db_connection.php';
 session_start();
 
+// update User profile
+if (isset($_POST['update_user_profile'])) {
+
+    $userId = $_POST['userId'];
+    $userName = $_POST['userName'];
+    $userEmail = $_POST['userEmail'];
+    $userPhone = $_POST['userPhone'];
+    $userAddress = $_POST['userAddress'];
+
+    $sql = "UPDATE `user_tbl` SET `Name`='$userName',`Email`='$userEmail',`Mobile`='$userPhone',`Address`='$userAddress' WHERE Id = '$userId'";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        $_SESSION['userUpdateAlert'] = 'Updated Successfully!';
+        header("location: reg_users.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
+}
+
+
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
 if (!isset($_SESSION['adminEmail'])) {
     header("location: admin/index.php");
@@ -286,6 +308,16 @@ if (!isset($_SESSION['adminEmail'])) {
             </div>
         <?php
         }
+        if (isset($_SESSION['userUpdateAlert'])) {
+            ?>
+                <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                    <strong>Member</strong>
+                    <?php echo $_SESSION['userUpdateAlert'];
+                    unset($_SESSION['userUpdateAlert']); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php
+            }
         ?>
 
         <h5 class="text-center fw-bold mb-4">Registered Member</h5>
@@ -332,7 +364,7 @@ if (!isset($_SESSION['adminEmail'])) {
                         <td><?php echo $address; ?></td>
                         <td><?php echo $regDate; ?></td>
                         <td class="text-center">
-                            <a href="" class="btn btn-secondary btn-sm">Edit</a>
+                            <a data-bs-toggle="modal" data-bs-target="#editUser" class="btn btn-secondary btn-sm editBTN">Edit</a>
                             <a href="action/delete_users.php/?userID=<?php echo $row['Id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
@@ -341,6 +373,51 @@ if (!isset($_SESSION['adminEmail'])) {
                 ?>
 
         </table>
+    </div>
+
+
+
+    <!-- Edit User Modal -->
+    <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h6 class="modal-title fw-bold" id="exampleModalLabel">Edit Member</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+
+                <!-- add new author form -->
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group small">
+                            <input type="hidden" name="userId" id="userId">
+                        </div>
+                        <div class="form-group small">
+                            <label class="col-form-label">Full Name:</label>
+                            <input type="text" name="userName" class="form-control" id="userName" required>
+                        </div>
+                        <div class="form-group small">
+                            <label class="col-form-label">Email:</label>
+                            <input type="text" name="userEmail" class="form-control" id="userEmail" required>
+                        </div>
+                        <div class="form-group small">
+                            <label class="col-form-label">Mobile no:</label>
+                            <input type="text" name="userPhone" class="form-control" id="userPhone" required>
+                        </div>
+                        <div class="form-group small">
+                            <label class="col-form-label">Address:</label>
+                            <input type="text" name="userAddress" class="form-control" id="userAddress" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="update_user_profile" class="btn btn-success btn-sm">Update</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
 
 
@@ -364,6 +441,34 @@ if (!isset($_SESSION['adminEmail'])) {
         });
     </script>
     <!-- ======= **DATATABLE CDN END*  ======= -->
+
+
+
+
+    <!-- ======= **Edit-Users JavaScript functionality starts here**  ======= -->
+    <script>
+        $(document).ready(function() {
+
+            $('.editBTN').on('click', function() {
+                $('#editmodal').modal('show');
+
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#userId').val(data[0]);
+                $('#userName').val(data[1]);
+                $('#userEmail').val(data[2]);
+                $('#userPhone').val(data[3]);
+                $('#userAddress').val(data[4]);
+
+            });
+        });
+    </script>
+    <!-- ======= **Edit-Users JavaScript functionality ends here**  ======= -->
 
 </body>
 

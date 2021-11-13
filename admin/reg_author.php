@@ -3,6 +3,25 @@
 include '../db_connection.php';
 session_start();
 
+// update Author
+if (isset($_POST['update_author'])) {
+
+    $authorId = $_POST['authorId'];
+    $authorName = $_POST['authorName'];
+
+    $sql = "UPDATE `author_tbl` SET Author_Name ='$authorName' WHERE Author_Id = '$authorId'";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        $_SESSION['authorUpdateAlert'] = 'Updated Successfully!';
+        header("location: reg_author.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
+}
+
+
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
 if (!isset($_SESSION['adminEmail'])) {
     header("location: admin/index.php");
@@ -286,9 +305,19 @@ if (!isset($_SESSION['adminEmail'])) {
             </div>
         <?php
         }
+        if (isset($_SESSION['authorUpdateAlert'])) {
+        ?>
+            <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                <strong>Author</strong>
+                <?php echo $_SESSION['authorUpdateAlert'];
+                unset($_SESSION['authorUpdateAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
         ?>
 
-        <h5 class="text-center fw-bold mb-4">Book Authors</h5>
+        <h5 class="text-center fw-bold mb-4">Book Author</h5>
         <table id="manageUserTable" class="table table-hover table-bordered small">
             <thead>
                 <tr>
@@ -299,7 +328,7 @@ if (!isset($_SESSION['adminEmail'])) {
             </thead>
             <tbody>
 
-                <!-- Showing all authors from database(authtor_tbl) -->
+                <!-- Showing all authors from database(author_tbl) -->
                 <?php
                 // declare empty variable for storing users data
                 $authorId = "";
@@ -315,7 +344,7 @@ if (!isset($_SESSION['adminEmail'])) {
                         <td><?php echo $authorId; ?></td>
                         <td><?php echo $authorName; ?></td>
                         <td class="text-center">
-                            <a href="" class="btn btn-secondary btn-sm">Edit</a>
+                            <a data-bs-toggle="modal" data-bs-target="#editAuthor" class="btn btn-secondary btn-sm editBTN">Edit</a>
                             <a href="action/delete_author.php/?authorID=<?php echo $row['Author_Id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
@@ -325,6 +354,38 @@ if (!isset($_SESSION['adminEmail'])) {
         </table>
     </div>
 
+
+
+    <!-- Edit Author Modal -->
+    <div class="modal fade" id="editAuthor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h6 class="modal-title fw-bold" id="exampleModalLabel">Edit Author</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+
+                <!-- add new author form -->
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group small">
+                            <input type="hidden" name="authorId" id="authorId">
+                        </div>
+                        <div class="form-group small">
+                            <label class="col-form-label">Author Name:</label>
+                            <input type="text" name="authorName" class="form-control" id="authorName" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="update_author" class="btn btn-success btn-sm">Update</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 
 
 
@@ -346,7 +407,32 @@ if (!isset($_SESSION['adminEmail'])) {
             $('#manageUserTable').DataTable();
         });
     </script>
-    <!-- ======= **DATATABLE CDN END*  ======= -->
+    <!-- ======= **DATATABLE CDN END**  ======= -->
+
+
+
+
+    <!-- ======= **Edit-Author JavaScript functionality starts here**  ======= -->
+    <script>
+        $(document).ready(function() {
+
+            $('.editBTN').on('click', function() {
+                $('#editmodal').modal('show');
+
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#authorId').val(data[0]);
+                $('#authorName').val(data[1]);
+
+            });
+        });
+    </script>
+    <!-- ======= **Edit Author JavaScript functionality ends here**  ======= -->
 
 </body>
 
