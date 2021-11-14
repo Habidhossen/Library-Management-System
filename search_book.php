@@ -2,6 +2,11 @@
 
 include 'db_connection.php';
 session_start();
+
+// get user search input by SESSION
+$_SESSION['inputValue'] = $_POST['inputValue'];
+
+
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
 if (!isset($_SESSION['userEmail'])) {
     header("location: index.php");
@@ -62,49 +67,71 @@ if (!isset($_SESSION['userEmail'])) {
 
 
 
-    <!-- ======= Body Header starts here ======= -->
-    <header class="d-flex align-items-center justify-content-center border-bottom header-design" style="background-color: darkslateblue;">
+    <div class="container search-result-card">
 
-        <div class="col-lg-7 col-md-8 col-sm-12 justify-content-center m-3">
+        <h5 class="mb-5">Search by <strong>'<?php echo $_SESSION['inputValue']; ?>'</strong></h5>
 
-            <h3 class="m-3 text-center text-white">Welcome! <strong><?php echo $_SESSION['userName']; ?></strong></h3>
-            <p class="mb-4 text-center text-white">This is your dashboard. Now you can access all the features of our library from here.</p>
+        <table class="table table-hover table-borderless small">
+            <thead>
+                <tr>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Author Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Publisher</th>
+                    <th scope="col">Book Price</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            <form action="search_book.php" method="POST">
-                <div class="input-group">
-                    <input type="text" name="inputValue" class="form-control" placeholder="Type a book name or author name" required>
-                    <button type="submit" name="search-btn" class="btn btn-outline-light mx-1">Search Book</button>
-                </div>
-            </form>
+                <!-- search book -->
+                <?php
+                if (isset($_POST['search-btn'])) {
 
-        </div>
+                    $bookName = "";
+                    $author = "";
+                    $category = "";
+                    $language = "";
+                    $publisher = "";
+                    $bookPrice = "";
 
-    </header>
-    <!-- ======= Body Header ends here ======= -->
+                    $inputValue = $_POST['inputValue'];
 
+                    $sql = "SELECT * FROM `book_tbl` WHERE `Book_Name` LIKE '%$inputValue%' OR `Book_Author` LIKE '%$inputValue%'";
+                    $result = mysqli_query($connection, $sql);
 
+                    if ($result) {
 
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $bookName = $row['Book_Name'];
+                            $author = $row['Book_Author'];
+                            $category = $row['Book_Category'];
+                            $language = $row['Language'];
+                            $publisher = $row['Publisher'];
+                            $bookPrice = $row['Book_Price'];
 
-    <!-- ======= User-Dashboard starts here======= -->
-    <div class="container">
-        <div class="row row-cols-1 row-cols-md-3 mt-2 g-4 justify-content-center">
-            <div class="col">
-                <div class="card-body custom-user-card p-4">
-                    <h5 class="card-title text-success"><strong>Issued Book</strong></h5>
-                    <p class="card-text small">See your issued book here!<br><br></p>
-                    <a href="view_issued_book.php" class="btn btn-success btn-sm d-flex justify-content-center">See more</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-user-card p-4">
-                    <h5 class="card-title text-primary"><strong>Book Request</strong></h5>
-                    <p class="card-text small">If you need any kind of book, Please send request!</p>
-                    <a href="book_request.php" class="btn btn-primary btn-sm d-flex justify-content-center">See more</a>
-                </div>
-            </div>
-        </div>
+                ?>
+                            <tr>
+                                <td><?php echo $bookName; ?></td>
+                                <td><?php echo $author; ?></td>
+                                <td><?php echo $category; ?></td>
+                                <td><?php echo $language; ?></td>
+                                <td><?php echo $publisher; ?></td>
+                                <td><?php echo $bookPrice; ?></td>
+                                <td>Available</td>
+                            </tr>
+                <?php
+                        }
+                    } else {
+                        echo 'Something went wrong!';
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
-    <!-- ======= User-Dashboard ends here======= -->
+
 
 
 

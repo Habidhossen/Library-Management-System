@@ -121,6 +121,13 @@ body {
   background: slateblue;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 }
+.search-result-card{
+  margin-top: 30px;
+  padding: 30px;
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: rgba(199, 202, 211, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
 /* User & Admin Dashboard card design ends here... */
 
 
