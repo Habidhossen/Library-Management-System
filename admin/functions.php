@@ -64,5 +64,18 @@
 		return($categoryCount);
     }
 
+    // count total book-request from database
+    function bookRequestCountFunction(){
+
+        include '../db_connection.php';
+        $bookRequestCount = '';
+        $sql = "SELECT COUNT(*) AS bookRequestCount FROM `book-request_tbl`";
+    	$query = mysqli_query($connection, $sql);
+        while($row = mysqli_fetch_assoc($query)){
+			$bookRequestCount = $row['bookRequestCount'];
+		}
+		return($bookRequestCount);
+    }
+
 
 ?>

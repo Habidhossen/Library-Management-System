@@ -1,56 +1,7 @@
 <?php
 
 include '../db_connection.php';
-include 'functions.php';
 session_start();
-
-
-// add book
-if (isset($_POST['add-book'])) {
-
-    $bookName = $_POST['bookName'];
-    $bookAuthor = $_POST['bookAuthor'];
-    $bookCategory = $_POST['bookCategory'];
-    $bookLanguage = $_POST['bookLanguage'];
-    $bookPublisher = $_POST['bookPublisher'];
-    $bookPrice = $_POST['bookPrice'];
-
-    $sql = "INSERT INTO `book_tbl`(`Book_Name`, `Book_Author`, `Book_Category`, `Language`, `Publisher`, `Book_Price`) VALUES ('$bookName','$bookAuthor','$bookCategory','$bookLanguage','$bookPublisher','$bookPrice')";
-    $query = mysqli_query($connection, $sql);
-    if ($query) {
-        $_SESSION['addBookAlert'] = 'Added Successfully!';
-        header("location: admin_dashboard.php");
-        exit;
-    } else {
-        echo 'Something went wrong!';
-    }
-}
-// add author
-if (isset($_POST['add-author'])) {
-    $authorName = $_POST['author-name'];
-    $sql = "INSERT INTO `author_tbl`(`Author_Name`) VALUES ('$authorName')";
-    $query = mysqli_query($connection, $sql);
-    if ($query) {
-        $_SESSION['addAuthorAlert'] = 'Added Successfully!';
-        header("location: admin_dashboard.php");
-        exit;
-    } else {
-        echo 'Something went wrong!';
-    }
-}
-// add category
-if (isset($_POST['add-category'])) {
-    $categoryName = $_POST['category-name'];
-    $sql = "INSERT INTO `category_tbl`(`Category_Name`) VALUES ('$categoryName')";
-    $query = mysqli_query($connection, $sql);
-    if ($query) {
-        $_SESSION['addCategoryAlert'] = 'Added Successfully!';
-        header("location: admin_dashboard.php");
-        exit;
-    } else {
-        echo 'Something went wrong!';
-    }
-}
 
 
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
@@ -68,6 +19,9 @@ if (!isset($_SESSION['adminEmail'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <!-- Datatable CSS CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <!-- add custom font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,7 +79,7 @@ if (!isset($_SESSION['adminEmail'])) {
                     <ul class="navbar-nav">
 
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Dashboard</a>
+                            <a class="nav-link text-white" href="admin_dashboard.php">Dashboard</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -144,7 +98,7 @@ if (!isset($_SESSION['adminEmail'])) {
                             </a>
                             <ul class="dropdown-menu" style="background-color: darkcyan;" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a href="" class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#addAuthor">Add Author</a></li>
-                                <li><a class="dropdown-item text-white" href="reg_author.php">Manage Author</a></li>
+                                <li><a class="dropdown-item text-white" href="#">Manage Author</a></li>
                             </ul>
                         </li>
 
@@ -154,7 +108,7 @@ if (!isset($_SESSION['adminEmail'])) {
                             </a>
                             <ul class="dropdown-menu" style="background-color: darkcyan;" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#addCategory">Add Category</a></li>
-                                <li><a class="dropdown-item text-white" href="reg_category.php">Manage Category</a></li>
+                                <li><a class="dropdown-item text-white" href="#">Manage Category</a></li>
                             </ul>
                         </li>
 
@@ -171,7 +125,6 @@ if (!isset($_SESSION['adminEmail'])) {
 
 
 
-
     <!-- ======= Admin-Nav all modal(add book, add Category, add author) starts here======= -->
 
     <!-- Add-Book Modal -->
@@ -183,71 +136,38 @@ if (!isset($_SESSION['adminEmail'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                    <div class="modal-body">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group small">
+                            <label class="col-form-label">Book ID:</label>
+                            <input type="text" name="" class="form-control">
+                        </div>
                         <div class="form-group small">
                             <label class="col-form-label">Book Name:</label>
-                            <input type="text" name="bookName" id="" class="form-control" required>
+                            <input type="text" name="" class="form-control">
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Author:</label>
-                            <select class="form-select" name="bookAuthor" id="bookAuthor" required>
-                                <!-- <option selected>Select Author</option> -->
-                                <option selected="true" disabled="disabled">Select Author</option> 
-
-                                <?php
-                                include '../db_connection.php';
-                                $sql = "SELECT Author_Name from author_tbl";
-                                $result = mysqli_query($connection, $sql);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                ?>
-                                    <option><?php echo $row['Author_Name']; ?></option>
-                                <?php
-                                }
-                                ?>
-
-                            </select>
+                            <label class="col-form-label">Book Author:</label>
+                            <input type="text" name="" class="form-control">
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Category:</label>
-                            <select class="form-select" name="bookCategory" id="bookCategory" required>
-                                <!-- <option>Select Category</option> -->
-                                <option selected="true" disabled="disabled">Select Category</option> 
-
-
-                                <?php
-                                include '../db_connection.php';
-                                $sql = "SELECT Category_Name from category_tbl";
-                                $result = mysqli_query($connection, $sql);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                ?>
-                                    <option><?php echo $row['Category_Name']; ?></option>
-                                <?php
-                                }
-                                ?>
-
-                            </select>
+                            <label class="col-form-label">Book Category:</label>
+                            <input type="text" name="" class="form-control">
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Language:</label>
-                            <input type="text" name="bookLanguage" id="" class="form-control" required>
+                            <label class="col-form-label">Book Number:</label>
+                            <input type="text" name="" class="form-control">
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Publisher:</label>
-                            <input type="text" name="bookPublisher" id="" class="form-control" required>
+                            <label class="col-form-label">Book Price:</label>
+                            <input type="text" name="" class="form-control">
                         </div>
-                        <div class="form-group small">
-                            <label class="col-form-label">Price:</label>
-                            <input type="text" name="bookPrice" id="" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                        <button type="submit" name="add-book" class="btn btn-success btn-sm">SAVE</button>
-                    </div>
-                </form>
-
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                    <a href="" class="btn btn-success btn-sm">SAVE</a>
+                </div>
             </div>
         </div>
     </div>
@@ -261,21 +181,22 @@ if (!isset($_SESSION['adminEmail'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-
-                <!-- add new author form -->
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                    <div class="modal-body">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group small">
+                            <label class="col-form-label">Author ID:</label>
+                            <input type="text" name="" class="form-control">
+                        </div>
                         <div class="form-group small">
                             <label class="col-form-label">Author Name:</label>
-                            <input type="text" name="author-name" class="form-control" required>
+                            <input type="text" name="" class="form-control">
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                        <button type="submit" name="add-author" class="btn btn-success btn-sm">SAVE</button>
-                    </div>
-                </form>
-
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                    <a href="" class="btn btn-success btn-sm">SAVE</a>
+                </div>
             </div>
         </div>
     </div>
@@ -289,21 +210,18 @@ if (!isset($_SESSION['adminEmail'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-
-                <!-- add new category form -->
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                    <div class="modal-body">
+                <div class="modal-body">
+                    <form>
                         <div class="form-group small">
                             <label class="col-form-label">Category Name:</label>
-                            <input type="text" name="category-name" class="form-control" required>
+                            <input type="text" name="" class="form-control">
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                        <button type="submit" name="add-category" class="btn btn-success btn-sm">SAVE</button>
-                    </div>
-                </form>
-
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                    <a href="" class="btn btn-success btn-sm">SAVE</a>
+                </div>
             </div>
         </div>
     </div>
@@ -320,10 +238,6 @@ if (!isset($_SESSION['adminEmail'])) {
                 <div class="modal-body">
                     <form>
                         <div class="form-group small">
-                            <label class="col-form-label">Student ID:</label>
-                            <input type="text" name="" class="form-control">
-                        </div>
-                        <div class="form-group small">
                             <label class="col-form-label">Book Name:</label>
                             <input type="text" name="" class="form-control">
                         </div>
@@ -337,6 +251,10 @@ if (!isset($_SESSION['adminEmail'])) {
                         </div>
                         <div class="form-group small">
                             <label class="col-form-label">Category ID:</label>
+                            <input type="text" name="" class="form-control">
+                        </div>
+                        <div class="form-group small">
+                            <label class="col-form-label">Student ID:</label>
                             <input type="text" name="" class="form-control">
                         </div>
                         <div class="form-group small">
@@ -355,102 +273,85 @@ if (!isset($_SESSION['adminEmail'])) {
     <!-- ======= Admin-Nav all modal(add book, add Category, add author) ends here======= -->
 
 
+    <div class="container custom-datatable-card mb-4">
 
-
-    <!-- ======= Admin-Dashboard starts here======= -->
-    <div class="container">
-        <div class="row row-cols-1 row-cols-md-3 mt-2 g-4">
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-primary"><strong><?php echo userCountFunction(); ?></strong></h4>
-                    <p class="card-text">Total Users</p>
-                    <a href="reg_users.php" class="btn btn-outline-primary d-flex justify-content-center">View more</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-success"><strong><?php echo bookCountFunction(); ?></strong></h4>
-                    <p class="card-text">Total Books</p>
-                    <a href="#" class="btn btn-outline-success d-flex justify-content-center">View more</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-danger"><strong>0</strong></h4>
-                    <p class="card-text"> Total Issued Book</p>
-                    <a href="#" class="btn btn-outline-danger d-flex justify-content-center">View more</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-danger"><strong><?php echo authorCountFunction(); ?></strong></h4>
-                    <p class="card-text">Total Authors</p>
-                    <a href="reg_author.php" class="btn btn-outline-danger d-flex justify-content-center">View more</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-primary"><strong><?php echo categoryCountFunction(); ?></strong></h4>
-                    <p class="card-text">Total Category</p>
-                    <a href="reg_category.php" class="btn btn-outline-primary d-flex justify-content-center">View more</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-success"><strong><?php echo bookRequestCountFunction(); ?></strong></h4>
-                    <p class="card-text">Total Book Request</p>
-                    <a href="view_book_request.php" class="btn btn-outline-success d-flex justify-content-center">View more</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- showing data insertion alert! PHP -->
+        <!-- showing action alert! PHP -->
         <?php
-        if (isset($_SESSION['addBookAlert'])) {
+        if (isset($_SESSION['userDeleteAlert'])) {
         ?>
-            <br>
-            <div class="alert alert-success alert-dismissible fade show small" role="alert">
-                <strong>Book</strong>
-                <?php echo $_SESSION['addBookAlert'];
-                unset($_SESSION['addBookAlert']); ?>
+            <div class="alert alert-warning alert-dismissible fade show small" role="alert">
+                <strong>Member</strong>
+                <?php echo $_SESSION['userDeleteAlert'];
+                unset($_SESSION['userDeleteAlert']); ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php
         }
-        if (isset($_SESSION['addAuthorAlert'])) {
+        if (isset($_SESSION['userUpdateAlert'])) {
+            ?>
+                <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                    <strong>Member</strong>
+                    <?php echo $_SESSION['userUpdateAlert'];
+                    unset($_SESSION['userUpdateAlert']); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php
+            }
         ?>
-            <br>
-            <div class="alert alert-success alert-dismissible fade show small" role="alert">
-                <strong>Author</strong>
-                <?php echo $_SESSION['addAuthorAlert'];
-                unset($_SESSION['addAuthorAlert']); ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php
-        }
-        if (isset($_SESSION['addCategoryAlert'])) {
-        ?>
-            <br>
-            <div class="alert alert-success alert-dismissible fade show small" role="alert">
-                <strong>Category</strong>
-                <?php echo $_SESSION['addCategoryAlert'];
-                unset($_SESSION['addCategoryAlert']); ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php
-        }
-        ?>
+
+        <h5 class="text-center fw-bold mb-4">Book Request</h5>
+        <table id="manageUserTable" class="table table-hover table-bordered small">
+            <thead>
+                <tr>
+                    <th scope="col">Request ID</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Author Name</th>
+                    <th scope="col">Member ID</th>
+                    <th scope="col">Member Email</th>
+                    <th scope="col">Request Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- Showing users all information from database(users_tbl) -->
+                <?php
+                // declare empty variable for storing users data
+                $requestId = "";
+                $bookName = "";
+                $authorName = "";
+                $memberId = "";
+                $memberEmail = "";
+                $requestDate = "";
+
+                $sql = "SELECT * FROM `book-request_tbl`";
+                $query = mysqli_query($connection, $sql);
+                while ($row = mysqli_fetch_assoc($query)) {
+                    $requestId = $row['Request_Id'];
+                    $bookName = $row['Book_Name'];
+                    $authorName = $row['Author_Name'];
+                    $memberId = $row['User_Id'];
+                    $memberEmail = $row['User_Email'];
+                    $requestDate = $row['Request_Date'];
+
+                ?>
+                    <tr>
+                        <td><?php echo $requestId; ?></td>
+                        <td><?php echo $bookName; ?></td>
+                        <td><?php echo $authorName; ?></td>
+                        <td><?php echo $memberId; ?></td>
+                        <td><?php echo $memberEmail; ?></td>
+                        <td><?php echo $requestDate; ?></td>
+                        <td>
+                            <a href="" class="btn btn-outline-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+
+        </table>
     </div>
-    <!-- ======= Admin-Dashboard ends here======= -->
-
-
-
-
-    <!-- ======= Footer starts here ======= -->
-    <footer>
-        <p class="text-center small fixed-bottom">Copyright © 2021 Team <strong>Free Thinkers</strong>, All right reserved</p>
-    </footer>
-    <!-- ======= Footer ends here ======= -->
 
 
 
@@ -458,6 +359,22 @@ if (!isset($_SESSION['adminEmail'])) {
     <!-- ======= Bootstrap, JavaScript CDN add ======= -->
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+
+    <!-- ======= **DATATABLE CDN START** ======= -->
+
+    <!-- Datatable Javascript CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- Datatable Javascript -->
+    <script>
+        $(document).ready(function() {
+            $('#manageUserTable').DataTable();
+        });
+    </script>
+    <!-- ======= **DATATABLE CDN END*  ======= -->
 
 </body>
 
