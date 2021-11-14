@@ -277,26 +277,16 @@ if (!isset($_SESSION['adminEmail'])) {
 
         <!-- showing action alert! PHP -->
         <?php
-        if (isset($_SESSION['userDeleteAlert'])) {
+        if (isset($_SESSION['bookReqDeleteAlert'])) {
         ?>
-            <div class="alert alert-warning alert-dismissible fade show small" role="alert">
-                <strong>Member</strong>
-                <?php echo $_SESSION['userDeleteAlert'];
-                unset($_SESSION['userDeleteAlert']); ?>
+            <div class="alert alert-danger alert-dismissible fade show small" role="alert">
+                <strong>Book Request</strong>
+                <?php echo $_SESSION['bookReqDeleteAlert'];
+                unset($_SESSION['bookReqDeleteAlert']); ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php
         }
-        if (isset($_SESSION['userUpdateAlert'])) {
-            ?>
-                <div class="alert alert-success alert-dismissible fade show small" role="alert">
-                    <strong>Member</strong>
-                    <?php echo $_SESSION['userUpdateAlert'];
-                    unset($_SESSION['userUpdateAlert']); ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            <?php
-            }
         ?>
 
         <h5 class="text-center fw-bold mb-4">Book Request</h5>
@@ -343,7 +333,7 @@ if (!isset($_SESSION['adminEmail'])) {
                         <td><?php echo $memberEmail; ?></td>
                         <td><?php echo $requestDate; ?></td>
                         <td>
-                            <a href="" class="btn btn-outline-danger btn-sm">Delete</a>
+                            <a href="action/delete_book_request.php/?requestID=<?php echo $row['Request_Id']; ?>" class="btn btn-outline-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                 <?php

@@ -87,7 +87,7 @@ if (!isset($_SESSION['userEmail'])) {
         <hr class="my-3">
         <form>
             <div class="form-group row align-items-center mt-2">
-                <label class="col-4">Member Id:</label>
+                <label class="col-4">Id:</label>
                 <div class="col-8">
                     <input name="name" disabled class="form-control alert-primary" value="<?php echo $userid; ?>">
                 </div>
