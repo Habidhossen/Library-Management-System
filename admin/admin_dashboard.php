@@ -378,7 +378,7 @@ if (!isset($_SESSION['adminEmail'])) {
                 <div class="card-body custom-admin-card p-4">
                     <h4 class="card-title text-danger"><strong>0</strong></h4>
                     <p class="card-text"> Total Issued Book</p>
-                    <a href="#" class="btn btn-outline-danger d-flex justify-content-center">View more</a>
+                    <a href="issued_book.php" class="btn btn-outline-danger d-flex justify-content-center">View more</a>
                 </div>
             </div>
             <div class="col">

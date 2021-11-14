@@ -338,7 +338,7 @@ if (!isset($_SESSION['adminEmail'])) {
             </thead>
             <tbody>
 
-                <!-- Showing book all information from database(book_tbl) -->
+                <!-- Showing all book information from database(book_tbl) -->
                 <?php
                 // declare empty variable for storing users data
                 $bookId = "";
@@ -405,11 +405,38 @@ if (!isset($_SESSION['adminEmail'])) {
                         </div>
                         <div class="form-group small">
                             <label class="col-form-label">Author:</label>
-                            <input type="text" name="bookAuthor" class="form-control" id="bookAuthor" required>
+                            <select class="form-select" name="bookAuthor" id="bookAuthor" required>
+
+                                <option selected="true" disabled="disabled">Select Author</option>
+                                <?php
+                                include '../db_connection.php';
+                                $sql = "SELECT Author_Name from author_tbl";
+                                $result = mysqli_query($connection, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                    <option><?php echo $row['Author_Name']; ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group small">
                             <label class="col-form-label">Category:</label>
-                            <input type="text" name="bookCategory" class="form-control" id="bookCategory" required>
+                            <select class="form-select" name="bookCategory" id="bookCategory" required>
+
+                                <option selected="true" disabled="disabled">Select Category</option>
+                                <?php
+                                include '../db_connection.php';
+                                $sql = "SELECT Category_Name from category_tbl";
+                                $result = mysqli_query($connection, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                    <option><?php echo $row['Category_Name']; ?></option>
+                                <?php
+                                }
+                                ?>
+
+                            </select>
                         </div>
                         <div class="form-group small">
                             <label class="col-form-label">Language:</label>
@@ -459,7 +486,7 @@ if (!isset($_SESSION['adminEmail'])) {
 
 
 
-    <!-- ======= **Edit-Users JavaScript functionality starts here**  ======= -->
+    <!-- ======= **Edit-Book-Info JavaScript functionality starts here**  ======= -->
     <script>
         $(document).ready(function() {
 
@@ -484,7 +511,7 @@ if (!isset($_SESSION['adminEmail'])) {
             });
         });
     </script>
-    <!-- ======= **Edit-Users JavaScript functionality ends here**  ======= -->
+    <!-- ======= **Edit-Book-Info JavaScript functionality ends here**  ======= -->
 
 </body>
 

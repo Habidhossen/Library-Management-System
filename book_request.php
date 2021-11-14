@@ -109,30 +109,30 @@ if (!isset($_SESSION['userEmail'])) {
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 
             <div class="form-group row align-items-center text-light">
-                <label class="col-4">Your ID:</label>
+                <label class="col-4">ID:</label>
                 <div class="col-8">
-                    <input name="userId" class="form-control alert-light" required>
+                    <input name="userId" class="form-control alert-light" placeholder="Enter Your ID" required>
                 </div>
             </div>
 
             <div class="form-group row align-items-center text-light mt-2">
-                <label class="col-4">Your Email:</label>
+                <label class="col-4">Email:</label>
                 <div class="col-8">
-                    <input name="userEmail" class="form-control alert-light" required>
+                    <input name="userEmail" class="form-control alert-light" placeholder="Enter Your Email" required>
                 </div>
             </div>
 
             <div class="form-group row align-items-center text-light mt-2">
                 <label class="col-4">Book Name:</label>
                 <div class="col-8">
-                    <input name="bookName" class="form-control alert-light" required>
+                    <input name="bookName" class="form-control alert-light" placeholder="Enter Book Name" required>
                 </div>
             </div>
 
             <div class="form-group row align-items-center text-light mt-2">
                 <label class="col-4">Auhtor Name:</label>
                 <div class="col-8">
-                    <input name="authorName" class="form-control alert-light" required>
+                    <input name="authorName" class="form-control alert-light" placeholder="Enter Author Name" required>
                 </div>
             </div>
 

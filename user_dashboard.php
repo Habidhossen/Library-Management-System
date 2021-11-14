@@ -63,7 +63,7 @@ if (!isset($_SESSION['userEmail'])) {
 
 
     <!-- ======= Body Header starts here ======= -->
-    <header class="d-flex align-items-center justify-content-center border-bottom header-design" style="background-color: darkslateblue;">
+    <header class="d-flex align-items-center justify-content-center border-bottom header-design" style="background-color: slateblue;">
 
         <div class="col-lg-7 col-md-8 col-sm-12 justify-content-center m-3">
 
@@ -89,7 +89,7 @@ if (!isset($_SESSION['userEmail'])) {
                 <div class="card-body custom-user-card p-4">
                     <h5 class="card-title text-success"><strong>Issued Book</strong></h5>
                     <p class="card-text small">See your issued book here!<br><br></p>
-                    <a href="#" class="btn btn-success btn-sm d-flex justify-content-center">See more</a>
+                    <a href="view_issued_book.php" class="btn btn-success btn-sm d-flex justify-content-center">See more</a>
                 </div>
             </div>
             <div class="col">
