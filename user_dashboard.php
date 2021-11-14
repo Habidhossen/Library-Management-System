@@ -67,7 +67,7 @@ if (!isset($_SESSION['userEmail'])) {
 
         <div class="col-lg-7 col-md-8 col-sm-12 justify-content-center m-3">
 
-            <h3 class="m-3 text-center text-white"><strong>Welcome! <?php echo $_SESSION['userName']; ?></strong></h3>
+            <h3 class="m-3 text-center text-white">Welcome! <strong><?php echo $_SESSION['userName']; ?></strong></h3>
             <p class="mb-4 text-center text-white">This is your dashboard. Now you can access all the features of our library from here.</p>
 
             <div class="input-group">
@@ -87,16 +87,16 @@ if (!isset($_SESSION['userEmail'])) {
         <div class="row row-cols-1 row-cols-md-3 mt-2 g-4 justify-content-center">
             <div class="col">
                 <div class="card-body custom-user-card p-4">
-                    <h4 class="card-title text-primary"><strong>0</strong></h4>
-                    <p class="card-text">Issued Book</p>
-                    <a href="#" class="btn btn-primary d-flex justify-content-center">View</a>
+                    <h5 class="card-title text-success"><strong>Issued Book</strong></h5>
+                    <p class="card-text small">See your issued book here!<br><br></p>
+                    <a href="#" class="btn btn-success btn-sm d-flex justify-content-center">See more</a>
                 </div>
             </div>
             <div class="col">
                 <div class="card-body custom-user-card p-4">
-                    <h4 class="card-title text-success"><strong>0</strong></h4>
-                    <p class="card-text">Book Request</p>
-                    <a href="#" class="btn btn-success d-flex justify-content-center">View</a>
+                    <h5 class="card-title text-primary"><strong>Book Request</strong></h5>
+                    <p class="card-text small">If you need any kind of book, Please send request!</p>
+                    <a href="book_request.php" class="btn btn-primary btn-sm d-flex justify-content-center">See more</a>
                 </div>
             </div>
         </div>

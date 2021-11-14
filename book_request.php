@@ -3,22 +3,26 @@
 include 'db_connection.php';
 session_start();
 
-// declare variable
-$userid = '';
-$username = '';
-$useremail = '';
-$usermobile = '';
-$useraddress = '';
+// send book request
+if (isset($_POST['send_book_request'])) {
 
-$sql = "SELECT * FROM `user_tbl` WHERE Email = '$_SESSION[userEmail]'";
-$result = mysqli_query($connection, $sql);
-while ($row = mysqli_fetch_assoc($result)) {
-    $userid = $row['Id'];
-    $username = $row['Name'];
-    $useremail = $row['Email'];
-    $usermobile = $row['Mobile'];
-    $useraddress = $row['Address'];
+    $bookName = $_POST['bookName'];
+    $authorName = $_POST['authorName'];
+    $userId = $_POST['userId'];
+    $userEmail = $_POST['userEmail'];
+
+    $sql = "INSERT INTO `book-request_tbl`(`Book_Name`, `Author_Name`, `User_Id`, `User_Email`) VALUES ('$bookName','$authorName','$userId','$userEmail')";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        $_SESSION['bookRequestAlert'] = 'Send Successfully!';
+        header("location: book_request.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
 }
+
 
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
 if (!isset($_SESSION['userEmail'])) {
@@ -80,51 +84,74 @@ if (!isset($_SESSION['userEmail'])) {
 
 
 
-    <!-- ======= View-Profile starts here======= -->
-    <div class="container col-lg-6 col-md-8 col-sm-8 custom-profile-card">
+    <!-- ======= Edit-Profile starts here======= -->
+    <div class="container col-lg-6 col-md-8 col-sm-8 book-request-card">
 
-        <h5 class="mb-3 fw-bold">My Profile</h5>
-        <hr class="my-3">
-        <form>
-            <div class="form-group row align-items-center mt-2">
-                <label class="col-4">Member Id:</label>
+        <h5 class="mb-3 fw-bold text-light">Book Request</h5>
+        <hr class="my-3 bg-light">
+
+
+        <!-- PHP Coding for showing alert -->
+        <?php
+        if (isset($_SESSION['bookRequestAlert'])) {
+        ?>
+            <div class="alert alert-light alert-dismissible fade show small" role="alert">
+                <strong>Book Request</strong>
+                <?php echo $_SESSION['bookRequestAlert'];
+                unset($_SESSION['bookRequestAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        ?>
+
+
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+
+            <div class="form-group row align-items-center text-light">
+                <label class="col-4">Your ID:</label>
                 <div class="col-8">
-                    <input name="name" disabled class="form-control alert-primary" value="<?php echo $userid; ?>">
+                    <input name="userId" class="form-control alert-light" required>
                 </div>
             </div>
 
-            <div class="form-group row align-items-center mt-2">
-                <label class="col-4">Name:</label>
+            <div class="form-group row align-items-center text-light mt-2">
+                <label class="col-4">Your Email:</label>
                 <div class="col-8">
-                    <input name="name" disabled class="form-control alert-primary" value="<?php echo $username; ?>">
+                    <input name="userEmail" class="form-control alert-light" required>
                 </div>
             </div>
 
-            <div class="form-group row align-items-center mt-2">
-                <label class="col-4">Email:</label>
+            <div class="form-group row align-items-center text-light mt-2">
+                <label class="col-4">Book Name:</label>
                 <div class="col-8">
-                    <input name="name" disabled class="form-control alert-primary" value="<?php echo $useremail; ?>">
+                    <input name="bookName" class="form-control alert-light" required>
                 </div>
             </div>
 
-            <div class="form-group row align-items-center mt-2">
-                <label class="col-4">Mobile No:</label>
+            <div class="form-group row align-items-center text-light mt-2">
+                <label class="col-4">Auhtor Name:</label>
                 <div class="col-8">
-                    <input name="name" disabled class="form-control alert-primary" value="<?php echo $usermobile; ?>">
+                    <input name="authorName" class="form-control alert-light" required>
                 </div>
             </div>
 
-            <div class="form-group row align-items-center mt-2">
-                <label class="col-4">Address:</label>
-                <div class="col-8">
-                    <input name="name" disabled class="form-control alert-primary" value="<?php echo $useraddress; ?>">
-                </div>
+            <div class="mt-4">
+                <button name="send_book_request" type="submit" class="w-100 btn btn-outline-light">SEND BOOK REQUEST</button>
             </div>
         </form>
 
     </div>
-    <!-- ======= View-Profile ends here======= -->
+    <!-- ======= Edit-Profile ends here======= -->
 
+
+
+
+    <!-- ======= Footer starts here ======= -->
+    <footer>
+        <p class="text-center small fixed-bottom">Copyright © 2021 Team <strong>Free Thinkers</strong>, All right reserved</p>
+    </footer>
+    <!-- ======= Footer ends here ======= -->
 
 
 

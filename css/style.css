@@ -114,6 +114,13 @@ body {
   background: #fafafa;
   box-shadow: rgba(199, 202, 211, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
+.book-request-card {
+  margin-top: 60px;
+  padding: 35px;
+  border-radius: 15px;
+  background: slateblue;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
 /* User & Admin Dashboard card design ends here... */
 
 
