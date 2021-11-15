@@ -44,7 +44,7 @@
 
 
     <!-- ======= Contact-us body starts here======= -->
-    <div class="container border  p-5 my-5" style="background-color: ivory;">
+    <div class="container border  p-5 my-5" style="background-color: beige;">
 
         <div>
             <h2 class="fw-bold">Contact us</h2>
@@ -55,18 +55,18 @@
         <div class="mt-5">
             <h5 class="fw-bold">Visit</h5>
             <ul class="small">
-                <li><b>Sunday-Wednesday: </b><span class="text-success">10am - 6pm</span></li>
-                <li><b>Thursday: </b><span class="text-success">10am - 2pm</span></li>
-                <li><b>Friday & Saturday: </b><span class="text-success">off</span></li>
+                <li><b>Sunday-Wednesday: </b><span class="text-black">10am - 6pm</span></li>
+                <li><b>Thursday: </b><span class="text-black">10am - 2pm</span></li>
+                <li><b>Friday & Saturday: </b><span class="text-black">off</span></li>
             </ul>
         </div>
 
         <div class="mt-5">
             <h5 class="fw-bold">Contact information</h5>
             <ul class="small">
-                <li><b>Phone: </b><span class="text-primary">+8801xxxxxxxxx</span></li>
-                <li><b>Email: </b><span class="text-primary">xyzlibrary@gmail.com</span></li>
-                <li><b>Address: </b><span class="text-primary">Chattogram, Bangladesh</span></li>
+                <li><b>Phone: </b><span class="text-black">+880123456789</span></li>
+                <li><b>Email: </b><span class="text-black">xyzlibrary@gmail.com</span></li>
+                <li><b>Address: </b><span class="text-black">Chattogram, Bangladesh</span></li>
             </ul>
         </div>
     </div>
