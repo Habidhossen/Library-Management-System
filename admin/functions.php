@@ -30,7 +30,7 @@
 
         include '../db_connection.php';
         $issuedbookCount = '';
-        $sql = "SELECT COUNT(*) AS issuedbookCount FROM issuedbook_tbl";
+        $sql = "SELECT COUNT(*) AS issuedbookCount FROM `issued-book_tbl`";
     	$query = mysqli_query($connection, $sql);
         while($row = mysqli_fetch_assoc($query)){
 			$issuedbookCount = $row['issuedbookCount'];

@@ -6,7 +6,6 @@ session_start();
 // get user search input by SESSION
 $_SESSION['inputValue'] = $_POST['inputValue'];
 
-
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
 if (!isset($_SESSION['userEmail'])) {
     header("location: index.php");
@@ -72,37 +71,38 @@ if (!isset($_SESSION['userEmail'])) {
         <h5 class="mb-5">Search by <strong>'<?php echo $_SESSION['inputValue']; ?>'</strong></h5>
 
         <table class="table table-hover table-borderless small">
-            <thead>
-                <tr>
-                    <th scope="col">Book Name</th>
-                    <th scope="col">Author Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Language</th>
-                    <th scope="col">Publisher</th>
-                    <th scope="col">Book Price</th>
-                    <th scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody>
 
-                <!-- search book -->
-                <?php
-                if (isset($_POST['search-btn'])) {
+            <!-- search book funtionality-->
+            <?php
+            if (isset($_POST['search-btn'])) {
 
-                    $bookName = "";
-                    $author = "";
-                    $category = "";
-                    $language = "";
-                    $publisher = "";
-                    $bookPrice = "";
+                $bookName = "";
+                $author = "";
+                $category = "";
+                $language = "";
+                $publisher = "";
+                $bookPrice = "";
+                $inputValue = $_POST['inputValue'];
 
-                    $inputValue = $_POST['inputValue'];
+                $sql = "SELECT * FROM `book_tbl` WHERE `Book_Name` LIKE '%$inputValue%' OR `Book_Author` LIKE '%$inputValue%'";
+                $result = mysqli_query($connection, $sql);
 
-                    $sql = "SELECT * FROM `book_tbl` WHERE `Book_Name` LIKE '%$inputValue%' OR `Book_Author` LIKE '%$inputValue%'";
-                    $result = mysqli_query($connection, $sql);
-
-                    if ($result) {
-
+                // if only one or more row execute then show search result otherwise print 'Book not found' message.
+                if (mysqli_num_rows($result) > 0) {
+            ?>
+                    <thead>
+                        <tr>
+                            <th scope="col">Book Name</th>
+                            <th scope="col">Author Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Language</th>
+                            <th scope="col">Publisher</th>
+                            <th scope="col">Book Price</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                         while ($row = mysqli_fetch_assoc($result)) {
                             $bookName = $row['Book_Name'];
                             $author = $row['Book_Author'];
@@ -111,7 +111,7 @@ if (!isset($_SESSION['userEmail'])) {
                             $publisher = $row['Publisher'];
                             $bookPrice = $row['Book_Price'];
 
-                ?>
+                        ?>
                             <tr>
                                 <td><?php echo $bookName; ?></td>
                                 <td><?php echo $author; ?></td>
@@ -121,17 +121,21 @@ if (!isset($_SESSION['userEmail'])) {
                                 <td><?php echo $bookPrice; ?></td>
                                 <td>Available</td>
                             </tr>
-                <?php
+                        <?php
                         }
                     } else {
-                        echo 'Something went wrong!';
+                        // echo 'Sorry! Book not found'; 
+                        ?>
+                        <div class="alert alert-danger" role="alert">
+                            Sorry! Book not found.
+                        </div>
+                <?php
                     }
                 }
                 ?>
-            </tbody>
+                    </tbody>
         </table>
     </div>
-
 
 
 

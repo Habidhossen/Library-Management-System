@@ -51,6 +51,27 @@ if (isset($_POST['add-category'])) {
         echo 'Something went wrong!';
     }
 }
+// book issue
+if (isset($_POST['book-issue'])) {
+    $categoryName = $_POST['category-name'];
+
+    $memberId = $_POST['memberId'];
+    $bookId = $_POST['bookId'];
+    $bookName = $_POST['bookName'];
+    $bookAuthor = $_POST['bookAuthor'];
+    $category = $_POST['category'];
+    $issuedDate = $_POST['issuedDate'];
+
+    $sql = "INSERT INTO `issued-book_tbl`(`Member_Id`, `Book_Id`, `Book_Name`, `Book_Author`, `Category`, `Issued_Date`) VALUES ('$memberId','$bookId','$bookName','$bookAuthor','$category',' $issuedDate')";
+    $query = mysqli_query($connection, $sql);
+    if ($query) {
+        $_SESSION['issueBookAlert'] = 'Successfully!';
+        header("location: admin_dashboard.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
+}
 
 
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
@@ -194,7 +215,7 @@ if (!isset($_SESSION['adminEmail'])) {
                             <label class="col-form-label">Author:</label>
                             <select class="form-select" name="bookAuthor" id="bookAuthor" required>
                                 <!-- <option selected>Select Author</option> -->
-                                <option selected="true" disabled="disabled">Select Author</option> 
+                                <option selected="true" disabled="disabled">Select Author</option>
 
                                 <?php
                                 include '../db_connection.php';
@@ -213,7 +234,7 @@ if (!isset($_SESSION['adminEmail'])) {
                             <label class="col-form-label">Category:</label>
                             <select class="form-select" name="bookCategory" id="bookCategory" required>
                                 <!-- <option>Select Category</option> -->
-                                <option selected="true" disabled="disabled">Select Category</option> 
+                                <option selected="true" disabled="disabled">Select Category</option>
 
 
                                 <?php
@@ -317,38 +338,69 @@ if (!isset($_SESSION['adminEmail'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="modal-body">
                         <div class="form-group small">
-                            <label class="col-form-label">Student ID:</label>
-                            <input type="text" name="" class="form-control">
+                            <label class="col-form-label">Member ID:</label>
+                            <input type="text" name="memberId" class="form-control" required>
+                        </div>
+                        <div class="form-group small">
+                            <label class="col-form-label">Book ID:</label>
+                            <input type="text" name="bookId" class="form-control" required>
                         </div>
                         <div class="form-group small">
                             <label class="col-form-label">Book Name:</label>
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="bookName" class="form-control" required>
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Book Number:</label>
-                            <input type="text" name="" class="form-control">
+                            <label class="col-form-label">Book Author:</label>
+                            <select class="form-select" name="bookAuthor" id="bookAuthor" required>
+                                <!-- <option selected>Select Author</option> -->
+                                <option selected="true" disabled="disabled">Select Author</option>
+
+                                <?php
+                                include '../db_connection.php';
+                                $sql = "SELECT Author_Name from author_tbl";
+                                $result = mysqli_query($connection, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                    <option><?php echo $row['Author_Name']; ?></option>
+                                <?php
+                                }
+                                ?>
+
+                            </select>
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Author ID:</label>
-                            <input type="text" name="" class="form-control">
-                        </div>
-                        <div class="form-group small">
-                            <label class="col-form-label">Category ID:</label>
-                            <input type="text" name="" class="form-control">
+                            <label class="col-form-label">Category:</label>
+                            <select class="form-select" name="bookCategory" id="bookCategory" required>
+                                <!-- <option>Select Category</option> -->
+                                <option selected="true" disabled="disabled">Select Category</option>
+
+
+                                <?php
+                                include '../db_connection.php';
+                                $sql = "SELECT Category_Name from category_tbl";
+                                $result = mysqli_query($connection, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                    <option><?php echo $row['Category_Name']; ?></option>
+                                <?php
+                                }
+                                ?>
+
+                            </select>
                         </div>
                         <div class="form-group small">
                             <label class="col-form-label">Issue Date:</label>
-                            <input type="date" name="" class="form-control">
+                            <input type="date" name="issuedDate" class="form-control" required>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">SAVE</a>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                        <button type="submit" name="book-issue" class="btn btn-success btn-sm">SAVE</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -376,7 +428,7 @@ if (!isset($_SESSION['adminEmail'])) {
             </div>
             <div class="col">
                 <div class="card-body custom-admin-card p-4">
-                    <h4 class="card-title text-danger"><strong>0</strong></h4>
+                    <h4 class="card-title text-danger"><strong><?php echo issuedbookCountFunction(); ?></strong></h4>
                     <p class="card-text"> Total Issued Book</p>
                     <a href="issued_book.php" class="btn btn-outline-danger d-flex justify-content-center">View more</a>
                 </div>
@@ -435,6 +487,17 @@ if (!isset($_SESSION['adminEmail'])) {
                 <strong>Category</strong>
                 <?php echo $_SESSION['addCategoryAlert'];
                 unset($_SESSION['addCategoryAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        if (isset($_SESSION['issueBookAlert'])) {
+        ?>
+            <br>
+            <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                <strong>Book Issued</strong>
+                <?php echo $_SESSION['issueBookAlert'];
+                unset($_SESSION['issueBookAlert']); ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php
