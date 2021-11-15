@@ -373,7 +373,7 @@ if (!isset($_SESSION['adminEmail'])) {
                         </div>
                         <div class="form-group small">
                             <label class="col-form-label">Category:</label>
-                            <select class="form-select" name="bookCategory" id="bookCategory" required>
+                            <select class="form-select" name="category" id="category" required>
                                 <!-- <option>Select Category</option> -->
                                 <option selected="true" disabled="disabled">Select Category</option>
 

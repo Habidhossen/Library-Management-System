@@ -2,6 +2,8 @@
 
 include 'db_connection.php';
 session_start();
+
+
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
 if (!isset($_SESSION['userEmail'])) {
     header("location: index.php");
