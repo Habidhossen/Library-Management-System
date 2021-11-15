@@ -146,7 +146,7 @@ if (!isset($_SESSION['adminEmail'])) {
                     <ul class="navbar-nav">
 
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Dashboard</a>
+                            <a class="nav-link text-white" href="admin_dashboard.php">Dashboard</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -155,7 +155,7 @@ if (!isset($_SESSION['adminEmail'])) {
                             </a>
                             <ul class="dropdown-menu" style="background-color: darkcyan;" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a href="" class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#addBook">Add Book</a></li>
-                                <li><a class="dropdown-item text-white" href="#">Manage Book</a></li>
+                                <li><a class="dropdown-item text-white" href="reg_book.php">Manage Book</a></li>
                             </ul>
                         </li>
 

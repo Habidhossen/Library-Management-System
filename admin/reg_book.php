@@ -27,6 +27,75 @@ if (isset($_POST['update_book_info'])) {
 }
 
 
+// add book
+if (isset($_POST['add-book'])) {
+
+    $bookName = $_POST['bookName'];
+    $bookAuthor = $_POST['bookAuthor'];
+    $bookCategory = $_POST['bookCategory'];
+    $bookLanguage = $_POST['bookLanguage'];
+    $bookPublisher = $_POST['bookPublisher'];
+    $bookPrice = $_POST['bookPrice'];
+
+    $sql = "INSERT INTO `book_tbl`(`Book_Name`, `Book_Author`, `Book_Category`, `Language`, `Publisher`, `Book_Price`) VALUES ('$bookName','$bookAuthor','$bookCategory','$bookLanguage','$bookPublisher','$bookPrice')";
+    $query = mysqli_query($connection, $sql);
+    if ($query) {
+        $_SESSION['addBookAlert'] = 'Added Successfully!';
+        header("location: admin_dashboard.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
+}
+// add author
+if (isset($_POST['add-author'])) {
+    $authorName = $_POST['author-name'];
+    $sql = "INSERT INTO `author_tbl`(`Author_Name`) VALUES ('$authorName')";
+    $query = mysqli_query($connection, $sql);
+    if ($query) {
+        $_SESSION['addAuthorAlert'] = 'Added Successfully!';
+        header("location: admin_dashboard.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
+}
+// add category
+if (isset($_POST['add-category'])) {
+    $categoryName = $_POST['category-name'];
+    $sql = "INSERT INTO `category_tbl`(`Category_Name`) VALUES ('$categoryName')";
+    $query = mysqli_query($connection, $sql);
+    if ($query) {
+        $_SESSION['addCategoryAlert'] = 'Added Successfully!';
+        header("location: admin_dashboard.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
+}
+// book issue
+if (isset($_POST['book-issue'])) {
+    $categoryName = $_POST['category-name'];
+
+    $memberId = $_POST['memberId'];
+    $bookId = $_POST['bookId'];
+    $bookName = $_POST['bookName'];
+    $bookAuthor = $_POST['bookAuthor'];
+    $category = $_POST['category'];
+    $issuedDate = $_POST['issuedDate'];
+
+    $sql = "INSERT INTO `issued-book_tbl`(`Member_Id`, `Book_Id`, `Book_Name`, `Book_Author`, `Category`, `Issued_Date`) VALUES ('$memberId','$bookId','$bookName','$bookAuthor','$category',' $issuedDate')";
+    $query = mysqli_query($connection, $sql);
+    if ($query) {
+        $_SESSION['issueBookAlert'] = 'Successfully!';
+        header("location: admin_dashboard.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
+}
+
+
 // when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
 if (!isset($_SESSION['adminEmail'])) {
     header("location: admin/index.php");
@@ -91,8 +160,8 @@ if (!isset($_SESSION['adminEmail'])) {
 
 
 
-    <!-- ======= Admin-Nav starts here======= -->
-    <div class="admin-navbar">
+  <!-- ======= Admin-Nav starts here======= -->
+  <div class="admin-navbar">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: darkcyan;">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -111,7 +180,7 @@ if (!isset($_SESSION['adminEmail'])) {
                             </a>
                             <ul class="dropdown-menu" style="background-color: darkcyan;" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a href="" class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#addBook">Add Book</a></li>
-                                <li><a class="dropdown-item text-white" href="#">Manage Book</a></li>
+                                <li><a class="dropdown-item text-white" href="reg_book.php">Manage Book</a></li>
                             </ul>
                         </li>
 
@@ -121,7 +190,7 @@ if (!isset($_SESSION['adminEmail'])) {
                             </a>
                             <ul class="dropdown-menu" style="background-color: darkcyan;" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a href="" class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#addAuthor">Add Author</a></li>
-                                <li><a class="dropdown-item text-white" href="#">Manage Author</a></li>
+                                <li><a class="dropdown-item text-white" href="reg_author.php">Manage Author</a></li>
                             </ul>
                         </li>
 
@@ -131,7 +200,7 @@ if (!isset($_SESSION['adminEmail'])) {
                             </a>
                             <ul class="dropdown-menu" style="background-color: darkcyan;" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#addCategory">Add Category</a></li>
-                                <li><a class="dropdown-item text-white" href="#">Manage Category</a></li>
+                                <li><a class="dropdown-item text-white" href="reg_category.php">Manage Category</a></li>
                             </ul>
                         </li>
 
@@ -148,7 +217,7 @@ if (!isset($_SESSION['adminEmail'])) {
 
 
 
-    <!-- ======= Admin-Nav all modal(add book, add Category, add author) starts here======= -->
+   <!-- ======= Admin-Nav all modal(add book, add Category, add author) starts here======= -->
 
     <!-- Add-Book Modal -->
     <div class="modal fade" id="addBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -159,38 +228,71 @@ if (!isset($_SESSION['adminEmail'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group small">
-                            <label class="col-form-label">Book ID:</label>
-                            <input type="text" name="" class="form-control">
-                        </div>
+
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="modal-body">
                         <div class="form-group small">
                             <label class="col-form-label">Book Name:</label>
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="bookName" id="" class="form-control" required>
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Book Author:</label>
-                            <input type="text" name="" class="form-control">
+                            <label class="col-form-label">Author:</label>
+                            <select class="form-select" name="bookAuthor" id="bookAuthor" required>
+                                <!-- <option selected>Select Author</option> -->
+                                <option selected="true" disabled="disabled">Select Author</option>
+
+                                <?php
+                                include '../db_connection.php';
+                                $sql = "SELECT Author_Name from author_tbl";
+                                $result = mysqli_query($connection, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                    <option><?php echo $row['Author_Name']; ?></option>
+                                <?php
+                                }
+                                ?>
+
+                            </select>
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Book Category:</label>
-                            <input type="text" name="" class="form-control">
+                            <label class="col-form-label">Category:</label>
+                            <select class="form-select" name="bookCategory" id="bookCategory" required>
+                                <!-- <option>Select Category</option> -->
+                                <option selected="true" disabled="disabled">Select Category</option>
+
+
+                                <?php
+                                include '../db_connection.php';
+                                $sql = "SELECT Category_Name from category_tbl";
+                                $result = mysqli_query($connection, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                    <option><?php echo $row['Category_Name']; ?></option>
+                                <?php
+                                }
+                                ?>
+
+                            </select>
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Book Number:</label>
-                            <input type="text" name="" class="form-control">
+                            <label class="col-form-label">Language:</label>
+                            <input type="text" name="bookLanguage" id="" class="form-control" required>
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Book Price:</label>
-                            <input type="text" name="" class="form-control">
+                            <label class="col-form-label">Publisher:</label>
+                            <input type="text" name="bookPublisher" id="" class="form-control" required>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">SAVE</a>
-                </div>
+                        <div class="form-group small">
+                            <label class="col-form-label">Price:</label>
+                            <input type="text" name="bookPrice" id="" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                        <button type="submit" name="add-book" class="btn btn-success btn-sm">SAVE</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -204,22 +306,21 @@ if (!isset($_SESSION['adminEmail'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group small">
-                            <label class="col-form-label">Author ID:</label>
-                            <input type="text" name="" class="form-control">
-                        </div>
+
+                <!-- add new author form -->
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="modal-body">
                         <div class="form-group small">
                             <label class="col-form-label">Author Name:</label>
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="author-name" class="form-control" required>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">SAVE</a>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                        <button type="submit" name="add-author" class="btn btn-success btn-sm">SAVE</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -233,18 +334,21 @@ if (!isset($_SESSION['adminEmail'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
+
+                <!-- add new category form -->
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="modal-body">
                         <div class="form-group small">
                             <label class="col-form-label">Category Name:</label>
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="category-name" class="form-control" required>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">SAVE</a>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                        <button type="submit" name="add-category" class="btn btn-success btn-sm">SAVE</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -258,44 +362,78 @@ if (!isset($_SESSION['adminEmail'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group small">
+                            <label class="col-form-label">Member ID:</label>
+                            <input type="text" name="memberId" class="form-control" required>
+                        </div>
+                        <div class="form-group small">
+                            <label class="col-form-label">Book ID:</label>
+                            <input type="text" name="bookId" class="form-control" required>
+                        </div>
                         <div class="form-group small">
                             <label class="col-form-label">Book Name:</label>
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="bookName" class="form-control" required>
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Book Number:</label>
-                            <input type="text" name="" class="form-control">
+                            <label class="col-form-label">Book Author:</label>
+                            <select class="form-select" name="bookAuthor" id="bookAuthor" required>
+                                <!-- <option selected>Select Author</option> -->
+                                <option selected="true" disabled="disabled">Select Author</option>
+
+                                <?php
+                                include '../db_connection.php';
+                                $sql = "SELECT Author_Name from author_tbl";
+                                $result = mysqli_query($connection, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                    <option><?php echo $row['Author_Name']; ?></option>
+                                <?php
+                                }
+                                ?>
+
+                            </select>
                         </div>
                         <div class="form-group small">
-                            <label class="col-form-label">Author ID:</label>
-                            <input type="text" name="" class="form-control">
-                        </div>
-                        <div class="form-group small">
-                            <label class="col-form-label">Category ID:</label>
-                            <input type="text" name="" class="form-control">
-                        </div>
-                        <div class="form-group small">
-                            <label class="col-form-label">Student ID:</label>
-                            <input type="text" name="" class="form-control">
+                            <label class="col-form-label">Category:</label>
+                            <select class="form-select" name="category" id="category" required>
+                                <!-- <option>Select Category</option> -->
+                                <option selected="true" disabled="disabled">Select Category</option>
+
+
+                                <?php
+                                include '../db_connection.php';
+                                $sql = "SELECT Category_Name from category_tbl";
+                                $result = mysqli_query($connection, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                    <option><?php echo $row['Category_Name']; ?></option>
+                                <?php
+                                }
+                                ?>
+
+                            </select>
                         </div>
                         <div class="form-group small">
                             <label class="col-form-label">Issue Date:</label>
-                            <input type="date" name="" class="form-control">
+                            <input type="date" name="issuedDate" class="form-control" required>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
-                    <a href="" class="btn btn-success btn-sm">SAVE</a>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+                        <button type="submit" name="book-issue" class="btn btn-success btn-sm">SAVE</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
     <!-- ======= Admin-Nav all modal(add book, add Category, add author) ends here======= -->
 
 
+
+
+    <!-- ======= DataTable and all action starts here======= -->
     <div class="container custom-datatable-card mb-4">
 
         <!-- showing action alert! PHP -->
@@ -380,6 +518,9 @@ if (!isset($_SESSION['adminEmail'])) {
 
         </table>
     </div>
+    <!-- ======= DataTable and all action ends here======= -->
+
+
 
 
 
@@ -466,6 +607,7 @@ if (!isset($_SESSION['adminEmail'])) {
     <!-- ======= Bootstrap, JavaScript CDN add ======= -->
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
 
 
     <!-- ======= **DATATABLE CDN START** ======= -->
