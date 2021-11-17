@@ -130,7 +130,7 @@ if (!isset($_SESSION['userEmail'])) {
             </div>
 
             <div class="form-group row align-items-center text-light mt-2">
-                <label class="col-4">Auhtor Name:</label>
+                <label class="col-4">Author Name:</label>
                 <div class="col-8">
                     <input name="authorName" class="form-control alert-light" placeholder="Enter Author Name" required>
                 </div>
