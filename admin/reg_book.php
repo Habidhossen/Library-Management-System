@@ -160,8 +160,8 @@ if (!isset($_SESSION['adminEmail'])) {
 
 
 
-  <!-- ======= Admin-Nav starts here======= -->
-  <div class="admin-navbar">
+    <!-- ======= Admin-Nav starts here======= -->
+    <div class="admin-navbar">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: darkcyan;">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -217,7 +217,7 @@ if (!isset($_SESSION['adminEmail'])) {
 
 
 
-   <!-- ======= Admin-Nav all modal(add book, add Category, add author) starts here======= -->
+    <!-- ======= Admin-Nav all modal(add book, add Category, add author) starts here======= -->
 
     <!-- Add-Book Modal -->
     <div class="modal fade" id="addBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

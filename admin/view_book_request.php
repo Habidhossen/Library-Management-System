@@ -136,8 +136,8 @@ if (!isset($_SESSION['adminEmail'])) {
 
 
 
-   <!-- ======= Admin-Nav starts here======= -->
-   <div class="admin-navbar">
+    <!-- ======= Admin-Nav starts here======= -->
+    <div class="admin-navbar">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: darkcyan;">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -408,7 +408,7 @@ if (!isset($_SESSION['adminEmail'])) {
 
 
 
-    
+
     <!-- ======= DataTable and all action starts here======= -->
     <div class="container custom-datatable-card mb-4">
 
@@ -470,7 +470,7 @@ if (!isset($_SESSION['adminEmail'])) {
                         <td><?php echo $memberEmail; ?></td>
                         <td><?php echo $requestDate; ?></td>
                         <td>
-                            <a href="action/delete_book_request.php/?requestID=<?php echo $row['Request_Id']; ?>" class="btn btn-outline-danger btn-sm">Delete</a>
+                            <a href="action/delete_book_request.php/?requestID=<?php echo $row['Request_Id']; ?>" class="btn btn-secondary btn-sm">Delete</a>
                         </td>
                     </tr>
                 <?php
@@ -489,7 +489,7 @@ if (!isset($_SESSION['adminEmail'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 
-    
+
     <!-- ======= **DATATABLE CDN START** ======= -->
 
     <!-- Datatable Javascript CDN -->
