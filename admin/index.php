@@ -24,12 +24,16 @@ if (isset($_POST['login'])) {
         exit;
       } else {
         // echo 'Wrong password';
-        $wrongPassword = '';
+        $_SESSION['wrongPasswordAlert'] = 'Wrong Password!';
+        header("location: index.php");
+        exit;
       }
     }
   } else {
     // echo 'Invalid email';
-    $wrongEmail = '';
+    $_SESSION['invalidEmailAlert'] = 'Invalid Email!';
+    header("location: index.php");
+    exit;
   }
 }
 
@@ -133,48 +137,50 @@ if (isset($_POST['login'])) {
 
             <!-- PHP Coding for showing alert -->
             <?php
-            if (isset($wrongPassword)) {
+            if (isset($_SESSION['wrongPasswordAlert'])) {
             ?>
               <br><br>
               <div class="alert alert-danger alert-dismissible fade show small" role="alert">
-                Wrong Password!
+                <?php echo $_SESSION['wrongPasswordAlert'];
+                unset($_SESSION['wrongPasswordAlert']); ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             <?php
             }
-            if (isset($wrongEmail)) {
+            if (isset($_SESSION['invalidEmailAlert'])) {
             ?>
               <br><br>
               <div class="alert alert-warning alert-dismissible fade show small" role="alert">
-                Invalid Email!
+                <?php echo $_SESSION['invalidEmailAlert'];
+                unset($_SESSION['invalidEmailAlert']); ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             <?php
             }
             ?>
           </form>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- ======= Admin-Login-Parts ends here ======= -->
+    <!-- ======= Admin-Login-Parts ends here ======= -->
 
 
 
 
 
-  <!-- ======= Footer starts here ======= -->
-  <footer>
-    <p class="text-center small">Copyright © 2021 Team <strong>Free Thinkers</strong>, All right reserved</p>
-  </footer>
-  <!-- ======= Footer ends here ======= -->
+    <!-- ======= Footer starts here ======= -->
+    <footer>
+      <p class="text-center small">Copyright © 2021 Team <strong>Free Thinkers</strong>, All right reserved</p>
+    </footer>
+    <!-- ======= Footer ends here ======= -->
 
 
 
 
-  <!-- ======= Bootstrap, JavaScript CDN add ======= -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <!-- ======= Bootstrap, JavaScript CDN add ======= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 </body>
 
 </html>
