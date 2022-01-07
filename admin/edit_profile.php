@@ -17,7 +17,7 @@ if (isset($_POST['update_profile'])) {
 
     $name = $_POST['name'];
 
-    $sql = "UPDATE `admin_tbl` SET Name ='$name'";
+    $sql = "UPDATE `admin_tbl` SET Name ='$name' WHERE Email = '$_SESSION[adminEmail]'";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
@@ -83,7 +83,7 @@ if (!isset($_SESSION['adminEmail'])) {
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
 
-            <a href="" class="btn btn-danger btn-sm shadow">Log out</a>
+            <a href="logout.php" class="btn btn-danger btn-sm shadow">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->

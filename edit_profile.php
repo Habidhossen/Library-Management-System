@@ -22,7 +22,7 @@ if (isset($_POST['update_profile'])) {
     $mobile = $_POST['mobile'];
     $address = $_POST['address'];
 
-    $sql = "UPDATE `user_tbl` SET Name ='$name', Mobile ='$mobile', Address ='$address'";
+    $sql = "UPDATE `user_tbl` SET Name ='$name', Mobile ='$mobile', Address ='$address' WHERE Email = '$_SESSION[userEmail]'";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {

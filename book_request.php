@@ -3,7 +3,7 @@
 include 'db_connection.php';
 session_start();
 
-// send book request
+// send book requests
 if (isset($_POST['send_book_request'])) {
 
     $bookName = $_POST['bookName'];

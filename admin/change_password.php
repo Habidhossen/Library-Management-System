@@ -88,7 +88,7 @@ if (!isset($_SESSION['adminEmail'])) {
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
 
-            <a href="" class="btn btn-danger btn-sm shadow">Log out</a>
+            <a href="logout.php" class="btn btn-danger btn-sm shadow">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->
