@@ -426,7 +426,7 @@ if (!isset($_SESSION['adminEmail'])) {
         }
         ?>
 
-        <h5 class="text-center fw-bold mb-4">Book Request</h5>
+        <h5 class="text-center fw-bold mb-4">Total Issued Book</h5>
         <table id="manageUserTable" class="table table-hover table-bordered small">
             <thead>
                 <tr>
